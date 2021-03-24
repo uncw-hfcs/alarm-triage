@@ -1,0 +1,5 @@
+.MainTask {
+    display: flex;
+    background-color: #ececec;
+    min-width: 850px;
+}

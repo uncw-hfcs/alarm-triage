@@ -18,10 +18,10 @@ def handleFileName(inp_str="Enter a file name to export: "):
     if not inp:
         print("File name cannot be blank.")
         return handleFileName(inp_str)
-    if inp[-4::] == ".csv":
+    if inp[-4::] == ".json":
         return inp
     else:
-        return inp + ".csv"
+        return inp + ".json"
 
 
 def handleSeed(inp_str="Enter a seed string or press enter for a new seed: "):
@@ -38,4 +38,4 @@ if __name__ == '__main__':
     file_name = handleFileName()
     tg = TrialGen.Builder(num_trials, file_name, seed)
 
-    tg.toCSV()
+    tg.toJSON()
