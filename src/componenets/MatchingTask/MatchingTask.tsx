@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import GridTile from './GridTile';
-import css from './MatchingTask.css';
+import TaskOverlay from './TaskOverlay';
 import correctSound from '../../sounds/correct.mp3';
 import incorrectSound from '../../sounds/incorrect.mp3';
 import { Trial } from '../../utils/PropTypes';
@@ -31,6 +31,7 @@ class MatchingTask extends Component<Props, State> {
         };
 
         this.handleSelect = this.handleSelect.bind(this);
+        this.nextTrial = this.nextTrial.bind(this);
     }
 
     handleSelect(selectedId: number) {
@@ -84,65 +85,63 @@ class MatchingTask extends Component<Props, State> {
         const trial = trials[currentIndex];
 
         return (
-            <div className={css.MatchingTask} data-tid="MatchingTask">
-                <div className={css.taskInstructions}>
+            <div className="MatchingTask" data-tid="MatchingTask">
+                <TaskOverlay
+                    symbol="✔"
+                    message={`Trial ${currentIndex + 1} Complete`}
+                    show={numberMatched === 12}
+                    timeout={2000}
+                    onTimeout={this.nextTrial}
+                />
+                <div className="taskInstructions">
                     Click a symbol that matches Symbol 1. Then click a symbol
                     that matches Symbol 2. Alternate until you find them all.
                     Tap done.
                 </div>
-                <div className={css.taskWrapper}>
-                    <div className={css.taskFigureWrapper}>
-                        <div className={css.taskFigure}>
-                            <img
-                                className={css.figureImg}
-                                src={trial.matchData['1'].path}
-                                alt="Figure 1"
-                            />
-                            <h3 className={css.figureLabel}>Figure 1</h3>
-                        </div>
-                        <div className={css.taskFigure}>
-                            <img
-                                className={css.figureImg}
-                                src={trial.matchData['2'].path}
-                                alt="Figure 2"
-                            />
-                            <h3 className={css.figureLabel}>Figure 2</h3>
-                        </div>
+                <div className="taskFigureWrapper">
+                    <div className="taskFigure">
+                        <h3 className="figureLabel">Symbol 1</h3>
+                        <img
+                            className="figureImg"
+                            src={trial.matchData['1'].path}
+                            alt="Symbol 1"
+                        />
                     </div>
-                    <div className={css.taskGridWrapper}>
-                        <div className={css.TaskGrid}>
-                            {trial.tileData.map(
-                                (data: { id: number; path: string }) => {
-                                    return (
-                                        // eslint-disable-next-line react/jsx-key
-                                        <GridTile
-                                            trialIndex={currentIndex}
-                                            taskId={data.id}
-                                            taskImg={data.path}
-                                            onSelect={this.handleSelect}
-                                        />
-                                    );
-                                }
-                            )}
-                        </div>
+                    <div className="taskFigure">
+                        <h3 className="figureLabel">Symbol 2</h3>
+                        <img
+                            className="figureImg"
+                            src={trial.matchData['2'].path}
+                            alt="Symbol 2"
+                        />
                     </div>
                 </div>
-                <div className={css.taskControls}>
-                    <span className={css.score}>
+                <div className="taskGridWrapper">
+                    <div className="TaskGrid">
+                        {trial.tileData.map(
+                            (data: { id: number; path: string }) => {
+                                return (
+                                    // eslint-disable-next-line react/jsx-key
+                                    <GridTile
+                                        trialIndex={currentIndex}
+                                        taskId={data.id}
+                                        taskImg={data.path}
+                                        onSelect={this.handleSelect}
+                                    />
+                                );
+                            }
+                        )}
+                    </div>
+                </div>
+
+                <div className="taskInfo">
+                    <span className="score">
+                        <li>Trial Number: {currentIndex + 1}</li>
                         <li>Matches: {numberMatched}</li>
                         <li>Correct Clicks: {correctClicks}</li>
                         <li>Incorrect Clicks: {incorrectClicks}</li>
                         <li>Correct Streak: {correctStreak}</li>
                     </span>
-                    <button
-                        className={css.Button}
-                        type="button"
-                        onClick={() => {
-                            this.nextTrial();
-                        }}
-                    >
-                        Done
-                    </button>
                 </div>
             </div>
         );

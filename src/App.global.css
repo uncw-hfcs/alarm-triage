@@ -2,13 +2,12 @@
  * @NOTE: Prepend a `~` to css file paths that are in your node_modules
  *        See https://github.com/webpack-contrib/sass-loader#imports
  */
+
+/* *Global Styles* */
+
 body {
-    /* position: relative;
-  height: 100vh; */
-    font-family: sans-serif;
-    overflow-y: hidden;
-    justify-content: center;
-    align-items: center;
+    font-family: Arial, Helvetica, sans-serif;
+    overflow: hidden;
 }
 
 * {
@@ -18,23 +17,6 @@ body {
 
 img {
     width: 100%;
-}
-
-.button {
-    background-color: white;
-    padding: 10px 20px;
-    margin: 10px;
-    border-radius: 10px;
-    border: none;
-    appearance: none;
-    font-size: 1.3rem;
-    box-shadow: 0px 8px 28px -6px rgba(24, 39, 75, 0.12),
-        0px 18px 88px -4px rgba(24, 39, 75, 0.14);
-    transition: transform ease-in 0.1s;
-}
-
-.button:hover {
-    transform: scale(1.05);
 }
 
 li {
@@ -51,10 +33,172 @@ a:hover {
     cursor: pointer;
 }
 
-.App {
-    display: grid;
-    background-color: #ececec;
-    max-width: 100vw;
-    max-height: 90vh;
-    width: 100%;
+/* *Container Styles* */
+
+#root {
+    position: inherit;
 }
+
+.App {
+    max-height: 100vh;
+    background-color: #333333;
+}
+
+.MainTask {
+    background-color: #fff;
+}
+
+/* *MatchingTask Styles* */
+
+.MatchingTask {
+    display: grid;
+    grid-template-columns: 1fr 7fr;
+    min-width: 800px;
+    height: 100%;
+    gap: 10px;
+    margin: 10px;
+    transform: translate(0, 0); /*? Forces overlay bounds to container. */
+}
+
+.taskInstructions {
+    grid-column: 1 / span 2;
+    background-color: white;
+    font-size: 1.3em;
+}
+
+.taskFigureWrapper {
+    background-color: white;
+}
+
+.taskGridWrapper {
+    background-color: #ececec;
+    -moz-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.3);
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+.figureLabel {
+    margin-block-end: 0.5em;
+    text-align: center;
+    text-decoration: underline;
+}
+
+.figureImg {
+    /* box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3); */
+    border: 2px solid #ccc;
+    border-radius: 5%;
+}
+
+.TaskGrid {
+    margin: 10px;
+    display: grid;
+    grid: repeat(4, 1fr) / repeat(7, 1fr);
+    gap: 10px;
+}
+
+.taskInfo {
+    grid-column: 1 / span 2;
+    text-align: right;
+    padding: 10px;
+    min-height: 70px;
+    background-color: white;
+}
+
+.score {
+    display: inline-block;
+    padding: 10px;
+    font-size: 1.3em;
+}
+
+.score li {
+    display: inline-block;
+    padding-right: 20px;
+}
+
+/* *GridTile Styles* */
+
+.tile {
+    border: none;
+    padding: 0;
+    align-items: inherit;
+    display: inherit;
+    appearance: none;
+}
+
+.tile img {
+    border-radius: 5%;
+}
+
+.matchedTileImg {
+    cursor: initial;
+    border: 4px solid #61aa6b;
+    opacity: 0.25;
+}
+
+.unmatchedTileImg {
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+    border: 2px solid #aaaaaa;
+    cursor: pointer;
+}
+
+.unmatchedTileImg:hover {
+    border: 4px solid #8ddfff;
+}
+
+/* *TaskOverlay Styles* */
+
+.TaskOverlay {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: inherit;
+    z-index: 1;
+    user-select: none;
+}
+
+.overlayWrapper {
+    display: grid;
+    position: inherit;
+    width: 100%;
+    height: 100%;
+    margin: 10px;
+}
+
+.overlayBox {
+    display: grid;
+    grid-template-columns: 80px minmax(200px, 1fr);
+    grid-template-rows: 100px;
+    background-color: #67af6e;
+    place-self: center;
+    place-items: center;
+    border-radius: 15px;
+    color: white;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    margin: 10px;
+}
+
+.overlaySymbol {
+    font-size: 2em;
+}
+
+.overlayMessage {
+    font-size: 1.5em;
+    padding-right: 25px;
+}
+
+/* .Button {
+    background-color: #8ddfff;
+    padding: 10px;
+    min-width: 100px;
+    min-height: 40px;
+    border-radius: 10px;
+    border: 2px solid #aaaaaa;
+    appearance: none;
+    font-size: 1.3rem;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+}
+
+.Button:hover {
+    border: 2px solid white;
+} */

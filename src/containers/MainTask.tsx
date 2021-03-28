@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import css from './MainTask.css';
-import * as trialData from '../../assets/data/trials.json';
+import trials from '../../assets/data/trials.json';
 import { Trial } from '../utils/PropTypes';
 import MatchingTask from '../componenets/MatchingTask/MatchingTask';
 
@@ -9,7 +8,7 @@ type Props = {
 };
 
 export default class MainTask extends Component<Props> {
-    trials: Trial[] = trialData.trials;
+    trials: Trial[] = trials.trials;
 
     constructor(props: Props) {
         super(props);
@@ -18,7 +17,7 @@ export default class MainTask extends Component<Props> {
 
     render() {
         return (
-            <div className={css.MainTask}>
+            <div className="MainTask">
                 <MatchingTask trials={this.trials} />
             </div>
         );

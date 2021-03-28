@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import css from './GridTile.css';
 
 type Props = {
     trialIndex: number;
@@ -61,9 +60,9 @@ export default class GridTile extends Component<Props, State> {
 
         if (matched) {
             return (
-                <button type="button" className={css.MatchedGridTile}>
+                <button type="button" className="tile">
                     <img
-                        className={css.MatchedTileImg}
+                        className="matchedTileImg"
                         src={taskImg}
                         alt={`${taskId}`}
                     />
@@ -74,11 +73,15 @@ export default class GridTile extends Component<Props, State> {
             // eslint-disable-next-line jsx-a11y/no-static-element-interactions
             <button
                 type="button"
-                className={css.GridTile}
+                className="tile"
                 onClick={this.handleClick}
                 onKeyDown={this.handleKeyDown}
             >
-                <img className={css.TileImg} src={taskImg} alt={`${taskId}`} />
+                <img
+                    className="unmatchedTileImg"
+                    src={taskImg}
+                    alt={`${taskId}`}
+                />
             </button>
         );
     }
