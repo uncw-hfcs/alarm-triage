@@ -12,10 +12,6 @@ type State = {
     visible: boolean;
 };
 
-const hidden = {
-    display: 'hidden !important',
-};
-
 export default class TaskOverlay extends Component<Props, State> {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     timer: any;

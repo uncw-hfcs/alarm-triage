@@ -3,11 +3,13 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 // import icon from '../assets/icon.svg';
 import './App.global.css';
 import MainTask from './containers/MainTask';
+import MainSession from './containers/MainSession';
+import Welcome from './containers/Welcome';
 
 const AppMount = () => {
     return (
         <div className="App">
-            <MainTask test={false} />
+            <MainSession test />
         </div>
     );
 };

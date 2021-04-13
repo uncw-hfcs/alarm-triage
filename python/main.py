@@ -1,41 +1,129 @@
-import TrialGen
+import os
+import json
+import random
 
-seed = "4ffbbe96-8664-11eb-8dcd-0242ac130003"
-
-def handleInt(inp_str="Enter number of trials to export: "):
-    try:
-        n = int(input(inp_str))
-        if n <= 0:
-            raise ValueError()
-        return n
-    except ValueError:
-        print("Please enter an integer > 0")
-        return handleInt(inp_str)
+default_seed = "4ffbbe96-8664-11eb-8dcd-0242ac130003"
+user_id = ""
+trials_fname = "trials.json"
+events_fname = "events.json"
 
 
-def handleFileName(inp_str="Enter a file name to export: "):
-    inp = input(inp_str)
-    if not inp:
-        print("File name cannot be blank.")
-        return handleFileName(inp_str)
-    if inp[-4::] == ".json":
-        return inp
-    else:
-        return inp + ".json"
+def createWorkingDir(dir_name):
+    os.chdir('../assets/data')
+    os.mkdir(dir_name)
+    os.chdir(dir_name)
+
+    return os.getcwd()
 
 
-def handleSeed(inp_str="Enter a seed string or press enter for a new seed: "):
-    inp = input(inp_str)
-    if not inp:
-        print("Seed cannot be blank.")
-        return handleSeed(inp_str)
+def generateTrials(num_trials, seed):
+    symbol_path = "../assets/img/symbols/"
+    n = 1
+    trials = list()
+    tile_data = list()
+    random.seed(seed)
 
-    return inp
+    def _buildTrial():
+        _t_set = random.randint(1, 3)
+        sample = random.sample(range(1, 26), 6)
+        _correct = sample[0:2]
+        _grid = _correct * 6
+        _grid += sample[2:7] * 2
+        _grid += [0] * 8
+        random.shuffle(_grid)
+
+        return _t_set, _correct, _grid
+
+    for i in range(num_trials):
+        t_set, correct, grid = _buildTrial()
+        set_path = f'{symbol_path}{t_set}/'
+        match_data = {
+            1: {
+                "id": correct[0],
+                "path": f'{set_path}{correct[0]}.png'
+            },
+            2: {
+                "id": correct[1],
+                "path": f'{set_path}{correct[1]}.png'
+            }
+        }
+
+        for t in grid:
+            tile_data.append({
+                "id": t,
+                "path": f'{set_path}{t}.png' if t > 0 else ''
+            })
+
+        trials.append({
+            "id": n,
+            "matchData": match_data,
+            "tileData": tile_data
+        })
+
+        tile_data = list()
+        n += 1
+
+    return {
+        "seed": seed,
+        "alarmCount": len(trials),
+        "trials": trials
+    }
+
+
+def generateAlarms(src_path, seed):
+    with open(src_path, "r") as f:
+        data = [row.strip().split(',') for row in f.readlines()[1:]]
+
+    alarms = list()
+    for i in data:
+        alarms.append({
+            "id": int(i[0]),
+            "valid": i[1] == "TRUE",
+            "data": {
+                1: {
+                    "authCity": i[2],
+                    "logins": {
+                        "success": int(i[3]),
+                        "failed": int(i[4][:-1]) + 1 if i[4][-1] == '+' else int(i[4])
+                    },
+                    "provider": i[5]
+                },
+                2: {
+                    "authCity": i[6],
+                    "logins": {
+                        "success": int(i[7]),
+                        "failed": int(i[4][:-1]) + 1 if i[4][-1] == '+' else int(i[4])
+                    },
+                    "provider": i[9]
+                }
+            },
+            "authTime": float(i[10]),
+            "vpnConfidence": float(i[11][:-1]),
+            "scenario": i[12],
+            "confidence": i[13]
+        })
+
+    random.seed(seed)
+    random.shuffle(alarms)
+
+    return {
+        "seed": seed,
+        "alarmCount": len(alarms),
+        "alarms": alarms
+    }
+
+
+def toJsonFile(json_data, file_name, dst_path):
+    with open(os.path.join(dst_path, file_name), "w") as f:
+        json.dump(json_data, f, indent=4)
 
 
 if __name__ == '__main__':
-    num_trials = handleInt()
-    file_name = handleFileName()
-    tg = TrialGen.Builder(num_trials, file_name, seed)
+    this_dir = os.path.dirname(os.path.realpath(__file__))
+    path = createWorkingDir('test')
+    events_src = os.path.join(this_dir, "in/events.csv")
+    _seed = default_seed
 
-    tg.toJSON()
+    toJsonFile(generateTrials(256, _seed), "trials.json", path)
+    toJsonFile(generateAlarms(events_src, _seed), "alarms.json", path)
+

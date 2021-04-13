@@ -1,16 +1,16 @@
-# 0.1.0 (2021.2.6)
+# 0.1.0 (2021.02.06)
 
 #### Features
 
 -   **Basic framework built**
 
-# 0.1.1 (2021.3.16)
+# 0.1.1 (2021.03.16)
 
 #### Features
 
 -   **Generated trials and assets for matching task**
 
-# 0.1.2 (2021.3.24)
+# 0.1.2 (2021.03.24)
 
 #### Features
 
@@ -21,9 +21,9 @@
 
 #### Improvmeents
 
--   **Converted main task trial date from csv to json**
+-   **Converted main task trial data from csv to json**
 
-# 0.1.3 (2021.3.28)
+# 0.1.3 (2021.03.28)
 
 #### Features
 
@@ -33,3 +33,17 @@
 
 -   **Various bug fixes and improvements**
 -   **Refactored component css to glabal sheet to bypass typescript errors (temporary).**
+
+# 0.1.4 (2021.04.13)
+
+#### Features
+
+-   **Implemented AlarmTask components and basic functionality.**
+-   **Implemented AlarmTask table-column sort functionality.**
+-   **Implemented AppConfig components (no functionality).**
+
+#### Improvements
+
+-   **Refactored Python scripts that generate app data.**
+-   **Various bug fixes and improvements.**
+-   **Various CSS tweaks and improvements.**

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import trials from '../../assets/data/trials.json';
+import trials from '../../assets/data/test/trials.json';
 import { Trial } from '../utils/PropTypes';
 import MatchingTask from '../componenets/MatchingTask/MatchingTask';
 

@@ -4,6 +4,7 @@ import TaskOverlay from './TaskOverlay';
 import correctSound from '../../sounds/correct.mp3';
 import incorrectSound from '../../sounds/incorrect.mp3';
 import { Trial } from '../../utils/PropTypes';
+// import ClickEvent from '../../events/ClickEvent';
 
 type Props = {
     trials: Trial[];
@@ -11,11 +12,12 @@ type Props = {
 
 type State = {
     currentIndex: number;
+    matchesLeft: number;
     currentFigure: '1' | '2';
-    numberMatched: number;
     correctClicks: number;
     incorrectClicks: number;
     correctStreak: number;
+    lastEvent?: string;
 };
 
 class MatchingTask extends Component<Props, State> {
@@ -23,8 +25,8 @@ class MatchingTask extends Component<Props, State> {
         super(props);
         this.state = {
             currentIndex: 0,
+            matchesLeft: 12,
             currentFigure: '1',
-            numberMatched: 0,
             correctClicks: 0,
             incorrectClicks: 0,
             correctStreak: 0,
@@ -51,6 +53,10 @@ class MatchingTask extends Component<Props, State> {
         this.setState((state) => ({
             incorrectClicks: state.incorrectClicks + 1,
             correctStreak: 0,
+            // lastEvent: new ClickEvent(
+            //     { location: 'Matching Task', eventType: 'click' },
+            //     false
+            // ).toString(),
         }));
 
         return false;
@@ -59,44 +65,38 @@ class MatchingTask extends Component<Props, State> {
     nextFigure() {
         this.setState((state) => ({
             currentFigure: state.currentFigure === '1' ? '2' : '1',
-            numberMatched: state.numberMatched + 1,
+            matchesLeft: state.matchesLeft - 1,
             correctClicks: state.correctClicks + 1,
             correctStreak: state.correctStreak + 1,
+            // lastEvent: new ClickEvent(
+            //     { location: 'Matching Task', eventType: 'click' },
+            //     true
+            // ).toString(),
         }));
     }
 
     nextTrial() {
+        const { trials } = this.props;
         this.setState((state) => ({
-            currentIndex: state.currentIndex + 1,
+            currentIndex:
+                state.currentIndex !== trials.length
+                    ? state.currentIndex + 1
+                    : 0,
             currentFigure: '1',
-            numberMatched: 0,
+            matchesLeft: 12,
         }));
     }
 
     render() {
         const { trials } = this.props;
-        const {
-            currentIndex,
-            numberMatched,
-            correctClicks,
-            incorrectClicks,
-            correctStreak,
-        } = this.state;
+        const { currentIndex, matchesLeft } = this.state;
         const trial = trials[currentIndex];
 
         return (
             <div className="MatchingTask" data-tid="MatchingTask">
-                <TaskOverlay
-                    symbol="✔"
-                    message={`Trial ${currentIndex + 1} Complete`}
-                    show={numberMatched === 12}
-                    timeout={2000}
-                    onTimeout={this.nextTrial}
-                />
                 <div className="taskInstructions">
                     Click a symbol that matches Symbol 1. Then click a symbol
                     that matches Symbol 2. Alternate until you find them all.
-                    Tap done.
                 </div>
                 <div className="taskFigureWrapper">
                     <div className="taskFigure">
@@ -117,6 +117,13 @@ class MatchingTask extends Component<Props, State> {
                     </div>
                 </div>
                 <div className="taskGridWrapper">
+                    <TaskOverlay
+                        symbol="✔"
+                        message={`Trial ${currentIndex + 1} Complete`}
+                        show={matchesLeft === 0}
+                        timeout={2000}
+                        onTimeout={this.nextTrial}
+                    />
                     <div className="TaskGrid">
                         {trial.tileData.map(
                             (data: { id: number; path: string }) => {
@@ -137,10 +144,7 @@ class MatchingTask extends Component<Props, State> {
                 <div className="taskInfo">
                     <span className="score">
                         <li>Trial Number: {currentIndex + 1}</li>
-                        <li>Matches: {numberMatched}</li>
-                        <li>Correct Clicks: {correctClicks}</li>
-                        <li>Incorrect Clicks: {incorrectClicks}</li>
-                        <li>Correct Streak: {correctStreak}</li>
+                        <li>Matches Left: {matchesLeft}</li>
                     </span>
                 </div>
             </div>

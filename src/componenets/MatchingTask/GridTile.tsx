@@ -46,7 +46,7 @@ export default class GridTile extends Component<Props, State> {
     }
 
     // eslint-disable-next-line class-methods-use-this
-    handleKeyDown(e: React.KeyboardEvent) {
+    preventDragHandler(e: React.SyntheticEvent) {
         e.preventDefault();
     }
 
@@ -74,13 +74,13 @@ export default class GridTile extends Component<Props, State> {
             <button
                 type="button"
                 className="tile"
-                onClick={this.handleClick}
-                onKeyDown={this.handleKeyDown}
+                onMouseDown={this.handleClick}
             >
                 <img
                     className="unmatchedTileImg"
                     src={taskImg}
                     alt={`${taskId}`}
+                    onDragStart={this.preventDragHandler}
                 />
             </button>
         );

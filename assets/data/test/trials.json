@@ -1,6 +1,6 @@
 {
     "seed": "4ffbbe96-8664-11eb-8dcd-0242ac130003",
-    "trialCount": 256,
+    "alarmCount": 256,
     "trials": [
         {
             "id": 1,

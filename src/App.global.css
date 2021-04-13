@@ -5,22 +5,14 @@
 
 /* *Global Styles* */
 
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    overflow: hidden;
-}
-
 * {
     box-sizing: border-box;
     margin: 0 auto;
 }
 
-img {
-    width: 100%;
-}
-
-li {
-    list-style: none;
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    overflow: hidden;
 }
 
 a {
@@ -33,14 +25,80 @@ a:hover {
     cursor: pointer;
 }
 
+input {
+    margin: 0 1em;
+}
+
+img {
+    width: 100%;
+}
+
+label {
+    display: block;
+}
+
+li {
+    list-style: none;
+}
+
+table {
+    display: block;
+    border-collapse: collapse;
+    width: 100%;
+    height: 100%;
+}
+
+thead {
+    margin-left: 0;
+    /* border-bottom: 2px solid #aaaaaa; */
+}
+
+td,
+th {
+    padding: 10px;
+    text-align: left;
+}
+
+td:last-child {
+    border: none;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #ececec;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #aaa;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #888;
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
+
 /* *Container Styles* */
 
 #root {
-    position: inherit;
+    width: 100vw;
+    height: 100vh;
 }
 
 .App {
-    max-height: 100vh;
+    /* max-height: 100vh; */
     background-color: #333333;
 }
 
@@ -48,19 +106,41 @@ a:hover {
     background-color: #fff;
 }
 
+.MainSession {
+    display: grid;
+    grid-template-columns: auto max-content;
+    background-color: #fff;
+    max-height: 100vh;
+    min-width: 1270px;
+    min-height: 520px;
+}
+
+.Welcome {
+    background-color: #159957;
+    background-image: linear-gradient(120deg, #155799, #159957);
+}
+
+/* *Config Styles* */
+
+.Config {
+    background-color: #fff;
+    margin: 10px;
+}
+
 /* *MatchingTask Styles* */
 
 .MatchingTask {
     display: grid;
     grid-template-columns: 1fr 7fr;
+    grid-template-rows: min-content min-content min-content;
     min-width: 800px;
-    height: 100%;
+    max-height: 100vh;
     gap: 10px;
     margin: 10px;
-    transform: translate(0, 0); /*? Forces overlay bounds to container. */
 }
 
 .taskInstructions {
+    margin-top: 10px;
     grid-column: 1 / span 2;
     background-color: white;
     font-size: 1.3em;
@@ -68,6 +148,11 @@ a:hover {
 
 .taskFigureWrapper {
     background-color: white;
+    margin: 5px;
+}
+
+.taskFigure {
+    margin: 10px auto;
 }
 
 .taskGridWrapper {
@@ -75,6 +160,7 @@ a:hover {
     -moz-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.3);
     -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.3);
     box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.3);
+    transform: translate(0, 0); /* ? Forces overlay bounds to container. */
 }
 
 .figureLabel {
@@ -90,7 +176,7 @@ a:hover {
 }
 
 .TaskGrid {
-    margin: 10px;
+    margin: 15px;
     display: grid;
     grid: repeat(4, 1fr) / repeat(7, 1fr);
     gap: 10px;
@@ -99,14 +185,13 @@ a:hover {
 .taskInfo {
     grid-column: 1 / span 2;
     text-align: right;
-    padding: 10px;
+    margin: 10px;
     min-height: 70px;
     background-color: white;
 }
 
 .score {
-    display: inline-block;
-    padding: 10px;
+    margin: 10px;
     font-size: 1.3em;
 }
 
@@ -127,6 +212,7 @@ a:hover {
 
 .tile img {
     border-radius: 5%;
+    user-select: none;
 }
 
 .matchedTileImg {
@@ -162,7 +248,7 @@ a:hover {
     position: inherit;
     width: 100%;
     height: 100%;
-    margin: 10px;
+    backdrop-filter: blur(4px);
 }
 
 .overlayBox {
@@ -187,18 +273,137 @@ a:hover {
     padding-right: 25px;
 }
 
-/* .Button {
-    background-color: #8ddfff;
-    padding: 10px;
-    min-width: 100px;
-    min-height: 40px;
-    border-radius: 10px;
-    border: 2px solid #aaaaaa;
-    appearance: none;
-    font-size: 1.3rem;
-    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+/* *Alarm Task* */
+
+.AlarmTask {
+    display: grid;
+    grid-template-rows: auto 40%;
+    overflow-y: hidden;
+    max-height: 100vh;
+    margin: 10px;
 }
 
-.Button:hover {
-    border: 2px solid white;
-} */
+/* *Alarm Table* */
+
+.AlarmTable {
+    display: grid;
+    grid-template-rows: min-content auto;
+    overflow-y: auto;
+    height: 100%;
+}
+
+.AlarmHeader {
+    width: 100%;
+}
+
+.AlarmHeaderCol {
+    cursor: pointer;
+    border-bottom: 2px solid #ececec;
+    height: 42px;
+}
+
+.AlarmHeaderCol:hover {
+    background-color: #d5f2ff;
+}
+
+.selectedHead {
+    border-bottom: 2px inset #8ddfff;
+}
+
+.alarmTableBody {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    width: 100%;
+    height: 100%;
+    white-space: nowrap;
+    border-collapse: collapse;
+}
+
+.alarmTableBody tr {
+    cursor: pointer;
+}
+
+.alarmTableBody tr:nth-child(odd) {
+    background-color: #ececec;
+}
+
+.alarmTableBody tr:hover {
+    background-color: #d5f2ff;
+}
+
+.alarmTableBody td:last-child {
+    font-weight: bold;
+}
+
+.selectedRow {
+    background-color: #ccc !important;
+    font-weight: bold;
+}
+
+/* *Alarm Details* */
+
+.AlarmDetails {
+    display: block;
+    margin: 10px auto;
+    padding: 10px 0;
+    width: 100%;
+}
+
+.detailsBar {
+    display: inline-block;
+    width: 100%;
+}
+
+.detailsBar h2 {
+    padding-top: 3px;
+    float: left;
+}
+
+.btn {
+    float: right;
+    border: 1px solid #aaaaaa;
+    border-radius: 3px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+    padding: 8px 16px;
+    margin-right: 10px;
+}
+
+.btn:hover {
+    border: 1px solid #8ddfff;
+}
+
+.escalateBtn {
+    background-color: #a8e3ae;
+}
+
+.ignoreBtn {
+    background-color: #e3a8a8;
+}
+
+.detailsTable {
+    border-collapse: separate;
+}
+
+.detailsTable tr {
+    border-bottom: 2px solid #aaa;
+}
+
+.detailsTable td {
+    text-align: center;
+}
+
+/* *AlarmAction* */
+
+.AlarmAction {
+    float: right;
+}
+
+.actionLabel {
+    font-weight: bold;
+}
+
+.actionSelect {
+    margin-left: 10px;
+    padding: 8px;
+    font-weight: bold;
+}
