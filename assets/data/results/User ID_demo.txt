@@ -1,0 +1,4 @@
+(2021-04-22)[13:48:10.715]:[Application](0) session start
+(2021-04-22)[13:48:16.397]:[Matching Task](1) incorrect click
+(2021-04-22)[13:51:02.261]:[Application](0) session end
+(2021-04-22)[15:13:56.201]:[Application](0) session start

@@ -1,0 +1,641 @@
+{
+    "seed": "ff9783dc-a2a5-11eb-bcbc-0242ac130002",
+    "count": 5,
+    "trials": [
+        {
+            "id": 1,
+            "matchData": {
+                "1": {
+                    "id": 24,
+                    "path": "../assets/img/symbols/3/24.png"
+                },
+                "2": {
+                    "id": 10,
+                    "path": "../assets/img/symbols/3/10.png"
+                }
+            },
+            "tileData": [
+                {
+                    "id": 10,
+                    "path": "../assets/img/symbols/3/10.png"
+                },
+                {
+                    "id": 0,
+                    "path": ""
+                },
+                {
+                    "id": 18,
+                    "path": "../assets/img/symbols/3/18.png"
+                },
+                {
+                    "id": 24,
+                    "path": "../assets/img/symbols/3/24.png"
+                },
+                {
+                    "id": 0,
+                    "path": ""
+                },
+                {
+                    "id": 10,
+                    "path": "../assets/img/symbols/3/10.png"
+                },
+                {
+                    "id": 24,
+                    "path": "../assets/img/symbols/3/24.png"
+                },
+                {
+                    "id": 15,
+                    "path": "../assets/img/symbols/3/15.png"
+                },
+                {
+                    "id": 0,
+                    "path": ""
+                },
+                {
+                    "id": 9,
+                    "path": "../assets/img/symbols/3/9.png"
+                },
+                {
+                    "id": 0,
+                    "path": ""
+                },
+                {
+                    "id": 10,
+                    "path": "../assets/img/symbols/3/10.png"
+                },
+                {
+                    "id": 18,
+                    "path": "../assets/img/symbols/3/18.png"
+                },
+                {
+                    "id": 0,
+                    "path": ""
+                },
+                {
+                    "id": 0,
+                    "path": ""
+                },
+                {
+                    "id": 0,
+                    "path": ""
+                },
+                {
+                    "id": 24,
+                    "path": "../assets/img/symbols/3/24.png"
+                },
+                {
+                    "id": 10,
+                    "path": "../assets/img/symbols/3/10.png"
+                },
+                {
+                    "id": 24,
+                    "path": "../assets/img/symbols/3/24.png"
+                },
+                {
+                    "id": 24,
+                    "path": "../assets/img/symbols/3/24.png"
+                },
+                {
+                    "id": 10,
+                    "path": "../assets/img/symbols/3/10.png"
+                },
+                {
+                    "id": 16,
+                    "path": "../assets/img/symbols/3/16.png"
+                },
+                {
+                    "id": 15,
+                    "path": "../assets/img/symbols/3/15.png"
+                },
+                {
+                    "id": 10,
+                    "path": "../assets/img/symbols/3/10.png"
+                },
+                {
+                    "id": 9,
+                    "path": "../assets/img/symbols/3/9.png"
+                },
+                {
+                    "id": 24,
+                    "path": "../assets/img/symbols/3/24.png"
+                },
+                {
+                    "id": 16,
+                    "path": "../assets/img/symbols/3/16.png"
+                },
+                {
+                    "id": 0,
+                    "path": ""
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "matchData": {
+                "1": {
+                    "id": 1,
+                    "path": "../assets/img/symbols/2/1.png"
+                },
+                "2": {
+                    "id": 13,
+                    "path": "../assets/img/symbols/2/13.png"
+                }
+            },
+            "tileData": [
+                {
+                    "id": 0,
+                    "path": ""
+                },
+                {
+                    "id": 20,
+                    "path": "../assets/img/symbols/2/20.png"
+                },
+                {
+                    "id": 3,
+                    "path": "../assets/img/symbols/2/3.png"
+                },
+                {
+                    "id": 1,
+                    "path": "../assets/img/symbols/2/1.png"
+                },
+                {
+                    "id": 1,
+                    "path": "../assets/img/symbols/2/1.png"
+                },
+                {
+                    "id": 0,
+                    "path": ""
+                },
+                {
+                    "id": 20,
+                    "path": "../assets/img/symbols/2/20.png"
+                },
+                {
+                    "id": 3,
+                    "path": "../assets/img/symbols/2/3.png"
+                },
+                {
+                    "id": 0,
+                    "path": ""
+                },
+                {
+                    "id": 13,
+                    "path": "../assets/img/symbols/2/13.png"
+                },
+                {
+                    "id": 13,
+                    "path": "../assets/img/symbols/2/13.png"
+                },
+                {
+                    "id": 14,
+                    "path": "../assets/img/symbols/2/14.png"
+                },
+                {
+                    "id": 0,
+                    "path": ""
+                },
+                {
+                    "id": 1,
+                    "path": "../assets/img/symbols/2/1.png"
+                },
+                {
+                    "id": 0,
+                    "path": ""
+                },
+                {
+                    "id": 0,
+                    "path": ""
+                },
+                {
+                    "id": 14,
+                    "path": "../assets/img/symbols/2/14.png"
+                },
+                {
+                    "id": 1,
+                    "path": "../assets/img/symbols/2/1.png"
+                },
+                {
+                    "id": 16,
+                    "path": "../assets/img/symbols/2/16.png"
+                },
+                {
+                    "id": 16,
+                    "path": "../assets/img/symbols/2/16.png"
+                },
+                {
+                    "id": 13,
+                    "path": "../assets/img/symbols/2/13.png"
+                },
+                {
+                    "id": 13,
+                    "path": "../assets/img/symbols/2/13.png"
+                },
+                {
+                    "id": 0,
+                    "path": ""
+                },
+                {
+                    "id": 13,
+                    "path": "../assets/img/symbols/2/13.png"
+                },
+                {
+                    "id": 0,
+                    "path": ""
+                },
+                {
+                    "id": 1,
+                    "path": "../assets/img/symbols/2/1.png"
+                },
+                {
+                    "id": 13,
+                    "path": "../assets/img/symbols/2/13.png"
+                },
+                {
+                    "id": 1,
+                    "path": "../assets/img/symbols/2/1.png"
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "matchData": {
+                "1": {
+                    "id": 5,
+                    "path": "../assets/img/symbols/3/5.png"
+                },
+                "2": {
+                    "id": 24,
+                    "path": "../assets/img/symbols/3/24.png"
+                }
+            },
+            "tileData": [
+                {
+                    "id": 5,
+                    "path": "../assets/img/symbols/3/5.png"
+                },
+                {
+                    "id": 24,
+                    "path": "../assets/img/symbols/3/24.png"
+                },
+                {
+                    "id": 0,
+                    "path": ""
+                },
+                {
+                    "id": 24,
+                    "path": "../assets/img/symbols/3/24.png"
+                },
+                {
+                    "id": 0,
+                    "path": ""
+                },
+                {
+                    "id": 14,
+                    "path": "../assets/img/symbols/3/14.png"
+                },
+                {
+                    "id": 6,
+                    "path": "../assets/img/symbols/3/6.png"
+                },
+                {
+                    "id": 5,
+                    "path": "../assets/img/symbols/3/5.png"
+                },
+                {
+                    "id": 7,
+                    "path": "../assets/img/symbols/3/7.png"
+                },
+                {
+                    "id": 24,
+                    "path": "../assets/img/symbols/3/24.png"
+                },
+                {
+                    "id": 5,
+                    "path": "../assets/img/symbols/3/5.png"
+                },
+                {
+                    "id": 7,
+                    "path": "../assets/img/symbols/3/7.png"
+                },
+                {
+                    "id": 6,
+                    "path": "../assets/img/symbols/3/6.png"
+                },
+                {
+                    "id": 19,
+                    "path": "../assets/img/symbols/3/19.png"
+                },
+                {
+                    "id": 24,
+                    "path": "../assets/img/symbols/3/24.png"
+                },
+                {
+                    "id": 19,
+                    "path": "../assets/img/symbols/3/19.png"
+                },
+                {
+                    "id": 0,
+                    "path": ""
+                },
+                {
+                    "id": 14,
+                    "path": "../assets/img/symbols/3/14.png"
+                },
+                {
+                    "id": 24,
+                    "path": "../assets/img/symbols/3/24.png"
+                },
+                {
+                    "id": 0,
+                    "path": ""
+                },
+                {
+                    "id": 0,
+                    "path": ""
+                },
+                {
+                    "id": 0,
+                    "path": ""
+                },
+                {
+                    "id": 5,
+                    "path": "../assets/img/symbols/3/5.png"
+                },
+                {
+                    "id": 0,
+                    "path": ""
+                },
+                {
+                    "id": 5,
+                    "path": "../assets/img/symbols/3/5.png"
+                },
+                {
+                    "id": 24,
+                    "path": "../assets/img/symbols/3/24.png"
+                },
+                {
+                    "id": 5,
+                    "path": "../assets/img/symbols/3/5.png"
+                },
+                {
+                    "id": 0,
+                    "path": ""
+                }
+            ]
+        },
+        {
+            "id": 4,
+            "matchData": {
+                "1": {
+                    "id": 4,
+                    "path": "../assets/img/symbols/2/4.png"
+                },
+                "2": {
+                    "id": 25,
+                    "path": "../assets/img/symbols/2/25.png"
+                }
+            },
+            "tileData": [
+                {
+                    "id": 25,
+                    "path": "../assets/img/symbols/2/25.png"
+                },
+                {
+                    "id": 0,
+                    "path": ""
+                },
+                {
+                    "id": 20,
+                    "path": "../assets/img/symbols/2/20.png"
+                },
+                {
+                    "id": 4,
+                    "path": "../assets/img/symbols/2/4.png"
+                },
+                {
+                    "id": 25,
+                    "path": "../assets/img/symbols/2/25.png"
+                },
+                {
+                    "id": 25,
+                    "path": "../assets/img/symbols/2/25.png"
+                },
+                {
+                    "id": 4,
+                    "path": "../assets/img/symbols/2/4.png"
+                },
+                {
+                    "id": 4,
+                    "path": "../assets/img/symbols/2/4.png"
+                },
+                {
+                    "id": 0,
+                    "path": ""
+                },
+                {
+                    "id": 4,
+                    "path": "../assets/img/symbols/2/4.png"
+                },
+                {
+                    "id": 20,
+                    "path": "../assets/img/symbols/2/20.png"
+                },
+                {
+                    "id": 0,
+                    "path": ""
+                },
+                {
+                    "id": 10,
+                    "path": "../assets/img/symbols/2/10.png"
+                },
+                {
+                    "id": 0,
+                    "path": ""
+                },
+                {
+                    "id": 0,
+                    "path": ""
+                },
+                {
+                    "id": 3,
+                    "path": "../assets/img/symbols/2/3.png"
+                },
+                {
+                    "id": 25,
+                    "path": "../assets/img/symbols/2/25.png"
+                },
+                {
+                    "id": 4,
+                    "path": "../assets/img/symbols/2/4.png"
+                },
+                {
+                    "id": 8,
+                    "path": "../assets/img/symbols/2/8.png"
+                },
+                {
+                    "id": 10,
+                    "path": "../assets/img/symbols/2/10.png"
+                },
+                {
+                    "id": 25,
+                    "path": "../assets/img/symbols/2/25.png"
+                },
+                {
+                    "id": 25,
+                    "path": "../assets/img/symbols/2/25.png"
+                },
+                {
+                    "id": 0,
+                    "path": ""
+                },
+                {
+                    "id": 8,
+                    "path": "../assets/img/symbols/2/8.png"
+                },
+                {
+                    "id": 0,
+                    "path": ""
+                },
+                {
+                    "id": 4,
+                    "path": "../assets/img/symbols/2/4.png"
+                },
+                {
+                    "id": 0,
+                    "path": ""
+                },
+                {
+                    "id": 3,
+                    "path": "../assets/img/symbols/2/3.png"
+                }
+            ]
+        },
+        {
+            "id": 5,
+            "matchData": {
+                "1": {
+                    "id": 14,
+                    "path": "../assets/img/symbols/2/14.png"
+                },
+                "2": {
+                    "id": 11,
+                    "path": "../assets/img/symbols/2/11.png"
+                }
+            },
+            "tileData": [
+                {
+                    "id": 11,
+                    "path": "../assets/img/symbols/2/11.png"
+                },
+                {
+                    "id": 14,
+                    "path": "../assets/img/symbols/2/14.png"
+                },
+                {
+                    "id": 11,
+                    "path": "../assets/img/symbols/2/11.png"
+                },
+                {
+                    "id": 0,
+                    "path": ""
+                },
+                {
+                    "id": 0,
+                    "path": ""
+                },
+                {
+                    "id": 0,
+                    "path": ""
+                },
+                {
+                    "id": 0,
+                    "path": ""
+                },
+                {
+                    "id": 0,
+                    "path": ""
+                },
+                {
+                    "id": 0,
+                    "path": ""
+                },
+                {
+                    "id": 0,
+                    "path": ""
+                },
+                {
+                    "id": 12,
+                    "path": "../assets/img/symbols/2/12.png"
+                },
+                {
+                    "id": 14,
+                    "path": "../assets/img/symbols/2/14.png"
+                },
+                {
+                    "id": 11,
+                    "path": "../assets/img/symbols/2/11.png"
+                },
+                {
+                    "id": 14,
+                    "path": "../assets/img/symbols/2/14.png"
+                },
+                {
+                    "id": 5,
+                    "path": "../assets/img/symbols/2/5.png"
+                },
+                {
+                    "id": 7,
+                    "path": "../assets/img/symbols/2/7.png"
+                },
+                {
+                    "id": 14,
+                    "path": "../assets/img/symbols/2/14.png"
+                },
+                {
+                    "id": 7,
+                    "path": "../assets/img/symbols/2/7.png"
+                },
+                {
+                    "id": 14,
+                    "path": "../assets/img/symbols/2/14.png"
+                },
+                {
+                    "id": 11,
+                    "path": "../assets/img/symbols/2/11.png"
+                },
+                {
+                    "id": 14,
+                    "path": "../assets/img/symbols/2/14.png"
+                },
+                {
+                    "id": 23,
+                    "path": "../assets/img/symbols/2/23.png"
+                },
+                {
+                    "id": 12,
+                    "path": "../assets/img/symbols/2/12.png"
+                },
+                {
+                    "id": 23,
+                    "path": "../assets/img/symbols/2/23.png"
+                },
+                {
+                    "id": 0,
+                    "path": ""
+                },
+                {
+                    "id": 5,
+                    "path": "../assets/img/symbols/2/5.png"
+                },
+                {
+                    "id": 11,
+                    "path": "../assets/img/symbols/2/11.png"
+                },
+                {
+                    "id": 11,
+                    "path": "../assets/img/symbols/2/11.png"
+                }
+            ]
+        }
+    ]
+}

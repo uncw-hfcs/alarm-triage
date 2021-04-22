@@ -4,6 +4,7 @@ type Props = {
     symbol: string;
     message: string;
     show: boolean;
+    onShow: CallableFunction;
     timeout: number;
     onTimeout: CallableFunction;
 };
@@ -32,10 +33,12 @@ export default class TaskOverlay extends Component<Props, State> {
     componentWillUnmount() {}
 
     render() {
-        const { symbol, message, timeout, onTimeout } = this.props;
+        const { symbol, message, onShow, timeout, onTimeout } = this.props;
         const { visible } = this.state;
 
         if (!visible) return null;
+
+        onShow();
 
         setTimeout(() => {
             onTimeout();

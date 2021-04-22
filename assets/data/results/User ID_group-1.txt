@@ -1,0 +1,2 @@
+(2021-04-22)[15:20:06.569]:[Application](0) session start
+(2021-04-22)[15:58:11.885]:[Application](0) session end

@@ -1,15 +1,12 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-// import icon from '../assets/icon.svg';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './App.global.css';
-import MainTask from './containers/MainTask';
 import MainSession from './containers/MainSession';
-import Welcome from './containers/Welcome';
 
 const AppMount = () => {
     return (
         <div className="App">
-            <MainSession test />
+            <MainSession />
         </div>
     );
 };
@@ -17,9 +14,9 @@ const AppMount = () => {
 export default function App() {
     return (
         <Router>
-            <Switch>
+            <div>
                 <Route path="/" component={AppMount} />
-            </Switch>
+            </div>
         </Router>
     );
 }

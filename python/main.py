@@ -3,6 +3,7 @@ import json
 import random
 
 default_seed = "4ffbbe96-8664-11eb-8dcd-0242ac130003"
+default_num_trials = 256
 user_id = ""
 trials_fname = "trials.json"
 events_fname = "events.json"
@@ -16,7 +17,7 @@ def createWorkingDir(dir_name):
     return os.getcwd()
 
 
-def generateTrials(num_trials, seed):
+def generateTrials(seed, num_trials=256):
     symbol_path = "../assets/img/symbols/"
     n = 1
     trials = list()
@@ -65,14 +66,17 @@ def generateTrials(num_trials, seed):
 
     return {
         "seed": seed,
-        "alarmCount": len(trials),
+        "count": len(trials),
         "trials": trials
     }
 
 
-def generateAlarms(src_path, seed):
+def generateAlarms(src_path, seed, num_alarms=0):
     with open(src_path, "r") as f:
-        data = [row.strip().split(',') for row in f.readlines()[1:]]
+        if num_alarms > 0:
+            data = [row.strip().split(',') for row in f.readlines()[1:num_alarms+1]]
+        else:
+            data = [row.strip().split(',') for row in f.readlines()[1:]]
 
     alarms = list()
     for i in data:
@@ -108,7 +112,7 @@ def generateAlarms(src_path, seed):
 
     return {
         "seed": seed,
-        "alarmCount": len(alarms),
+        "count": len(alarms),
         "alarms": alarms
     }
 
@@ -120,10 +124,10 @@ def toJsonFile(json_data, file_name, dst_path):
 
 if __name__ == '__main__':
     this_dir = os.path.dirname(os.path.realpath(__file__))
-    path = createWorkingDir('test')
+    path = createWorkingDir('demo')
     events_src = os.path.join(this_dir, "in/events.csv")
-    _seed = default_seed
+    _seed = "ff9783dc-a2a5-11eb-bcbc-0242ac130002"
 
-    toJsonFile(generateTrials(256, _seed), "trials.json", path)
-    toJsonFile(generateAlarms(events_src, _seed), "alarms.json", path)
+    toJsonFile(generateTrials(_seed, 5), "trials.json", path)
+    toJsonFile(generateAlarms(events_src, _seed, 3), "alarms.json", path)
 

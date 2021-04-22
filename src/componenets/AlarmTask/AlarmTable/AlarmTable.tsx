@@ -1,16 +1,19 @@
 import React, { Component } from 'react';
-import { Alarm, AlarmSort } from '../../../utils/PropTypes';
+import { Alarm, AlarmSort, ConfigProps } from '../../../utils/PropTypes';
 import AlarmHeader from './AlarmHeader';
 import AlarmRow from './AlarmRow';
+import AppEvent from '../../../events/AppEvent';
+import HandleAppEvent from '../../../handlers/EventHandler';
 
 type Props = {
     alarms: Alarm[];
+    configProps: ConfigProps;
     handleSelect: CallableFunction;
+    selectedAlarm?: Alarm;
 };
 
 type State = {
     alarms: Alarm[];
-    selectedAlarm?: Alarm;
     colWidths: number[];
 };
 
@@ -31,9 +34,17 @@ export default class AlarmTable extends Component<Props, State> {
     componentWillUnmount() {}
 
     handleRowSelect(alarm: Alarm) {
-        const { handleSelect } = this.props;
+        const { configProps, handleSelect } = this.props;
+
+        HandleAppEvent(
+            new AppEvent(configProps, {
+                id: alarm.id,
+                type: 'click',
+                location: 'Alarm Table',
+            }),
+            true
+        );
         handleSelect(alarm);
-        this.setState({ selectedAlarm: alarm });
     }
 
     handleSort(sortBy: AlarmSort, descending: boolean) {
@@ -92,7 +103,9 @@ export default class AlarmTable extends Component<Props, State> {
     }
 
     render() {
-        const { alarms, selectedAlarm, colWidths } = this.state;
+        const { alarms, colWidths } = this.state;
+        const { selectedAlarm } = this.props;
+        if (alarms.length < 0) return null;
 
         return (
             <table className="AlarmTable">
@@ -103,17 +116,19 @@ export default class AlarmTable extends Component<Props, State> {
                     />
                 </thead>
                 <tbody className="alarmTableBody">
-                    {alarms.map((alarm: Alarm) => {
-                        return (
-                            // eslint-disable-next-line react/jsx-key
-                            <AlarmRow
-                                alarm={alarm}
-                                selected={alarm.id === selectedAlarm?.id}
-                                onSelect={this.handleRowSelect}
-                                colWidths={colWidths}
-                            />
-                        );
-                    })}
+                    {alarms.length > 0
+                        ? alarms.map((alarm: Alarm) => {
+                              return (
+                                  // eslint-disable-next-line react/jsx-key
+                                  <AlarmRow
+                                      alarm={alarm}
+                                      selected={alarm.id === selectedAlarm?.id}
+                                      onSelect={this.handleRowSelect}
+                                      colWidths={colWidths}
+                                  />
+                              );
+                          })
+                        : null}
                 </tbody>
             </table>
         );

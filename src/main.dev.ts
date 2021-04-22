@@ -11,10 +11,13 @@
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 import path from 'path';
-import { app, BrowserWindow, shell } from 'electron';
+import { app, BrowserWindow, ipcMain, shell } from 'electron';
 import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
 import MenuBuilder from './menu';
+import { ConfigProps } from './utils/PropTypes';
+import HandleAppEvent from './handlers/EventHandler';
+import AppEvent from './events/AppEvent';
 
 export default class AppUpdater {
     constructor() {
@@ -25,6 +28,7 @@ export default class AppUpdater {
 }
 
 let mainWindow: BrowserWindow | null = null;
+let configProps: ConfigProps | null = null;
 
 if (process.env.NODE_ENV === 'production') {
     const sourceMapSupport = require('source-map-support');
@@ -69,11 +73,12 @@ const createWindow = async () => {
 
     mainWindow = new BrowserWindow({
         show: false,
-        width: 1024,
+        width: 1700,
         height: 728,
         icon: getAssetPath('icon.png'),
         webPreferences: {
             nodeIntegration: true,
+            enableRemoteModule: true,
         },
     });
 
@@ -118,6 +123,17 @@ const createWindow = async () => {
 app.on('window-all-closed', () => {
     // Respect the OSX convention of having the application in memory even
     // after all windows have been closed
+    if (configProps !== null) {
+        HandleAppEvent(
+            new AppEvent(configProps, {
+                id: 0,
+                type: 'session end',
+                location: 'Application',
+            }),
+            true
+        );
+    }
+
     if (process.platform !== 'darwin') {
         app.quit();
     }
@@ -129,4 +145,12 @@ app.on('activate', () => {
     // On macOS it's common to re-create a window in the app when the
     // dock icon is clicked and there are no other windows open.
     if (mainWindow === null) createWindow();
+});
+
+ipcMain.handle('log', (_event, arg) => {
+    console.log(arg);
+});
+
+ipcMain.handle('config', (_event, arg: ConfigProps | null) => {
+    configProps = arg;
 });

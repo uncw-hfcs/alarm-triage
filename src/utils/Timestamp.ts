@@ -25,6 +25,22 @@ export default class Timestamp {
         return `${min} min ago`;
     }
 
+    toLogString(): string {
+        const time = [
+            `${this.date.getFullYear()}`,
+            `0${this.date.getMonth() + 1}`.slice(-2),
+            `0${this.date.getDate()}`.slice(-2),
+            `0${this.date.getHours()}`.slice(-2),
+            `0${this.date.getMinutes()}`.slice(-2),
+            `0${this.date.getSeconds()}`.slice(-2),
+            `00${this.date.getMilliseconds()}`.slice(-3),
+        ];
+
+        return `(${time.slice(0, 3).join('-')})[${time.slice(3, 6).join(':')}.${
+            time[6]
+        }]`;
+    }
+
     toString(): string {
         const time = [
             `${this.date.getFullYear()}`,

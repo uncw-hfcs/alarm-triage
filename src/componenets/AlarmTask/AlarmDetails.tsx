@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
-import { Alarm, Action } from '../../utils/PropTypes';
+import { Alarm, Action, ConfigProps } from '../../utils/PropTypes';
 import AlarmAction from './AlarmAction';
+import AppEvent from '../../events/AppEvent';
+import HandleAppEvent from '../../handlers/EventHandler';
 
 type Props = {
     alarm?: Alarm;
     action: Action;
+    configProps: ConfigProps;
     onActionUpdate: CallableFunction;
 };
 
@@ -19,8 +22,19 @@ export default class AlarmRow extends Component<Props> {
     componentWillUnmount() {}
 
     handleAction(action: Action) {
-        const { alarm, onActionUpdate } = this.props;
+        const { alarm, configProps, onActionUpdate } = this.props;
         if (alarm) {
+            HandleAppEvent(
+                new AppEvent(configProps, {
+                    id: alarm.id,
+                    type:
+                        action === 'Escalate'
+                            ? 'alarm escalated'
+                            : 'alarm ignored',
+                    location: 'Alarm Task',
+                }),
+                true
+            );
             onActionUpdate(action);
         }
     }

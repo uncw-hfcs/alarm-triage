@@ -1,0 +1,84 @@
+{
+    "seed": "ff9783dc-a2a5-11eb-bcbc-0242ac130002",
+    "count": 3,
+    "alarms": [
+        {
+            "id": 1,
+            "valid": false,
+            "data": {
+                "1": {
+                    "authCity": "Tokyo",
+                    "logins": {
+                        "success": 9,
+                        "failed": 2
+                    },
+                    "provider": "Telecom"
+                },
+                "2": {
+                    "authCity": "Los Angeles",
+                    "logins": {
+                        "success": 8,
+                        "failed": 2
+                    },
+                    "provider": "Hosting/server"
+                }
+            },
+            "authTime": 0.09,
+            "vpnConfidence": 98.0,
+            "scenario": "vpn",
+            "confidence": "unknown"
+        },
+        {
+            "id": 2,
+            "valid": false,
+            "data": {
+                "1": {
+                    "authCity": "Moscow",
+                    "logins": {
+                        "success": 12,
+                        "failed": 2
+                    },
+                    "provider": "Telecom"
+                },
+                "2": {
+                    "authCity": "Los Angeles",
+                    "logins": {
+                        "success": 13,
+                        "failed": 2
+                    },
+                    "provider": "Hosting/server"
+                }
+            },
+            "authTime": 1.22,
+            "vpnConfidence": 95.0,
+            "scenario": "vpn",
+            "confidence": "unknown"
+        },
+        {
+            "id": 3,
+            "valid": false,
+            "data": {
+                "1": {
+                    "authCity": "Beijing",
+                    "logins": {
+                        "success": 11,
+                        "failed": 0
+                    },
+                    "provider": "Telecom"
+                },
+                "2": {
+                    "authCity": "Los Angeles",
+                    "logins": {
+                        "success": 3,
+                        "failed": 0
+                    },
+                    "provider": "Hosting/server"
+                }
+            },
+            "authTime": 0.75,
+            "vpnConfidence": 95.0,
+            "scenario": "vpn",
+            "confidence": "unknown"
+        }
+    ]
+}

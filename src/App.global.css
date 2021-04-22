@@ -98,21 +98,20 @@ button:focus {
 }
 
 .App {
-    /* max-height: 100vh; */
-    background-color: #333333;
+    background-color: #fff;
+    height: 100vh;
 }
 
-.MainTask {
-    background-color: #fff;
-}
+/* .MainTask {} */
 
 .MainSession {
     display: grid;
     grid-template-columns: auto max-content;
-    background-color: #fff;
+    background-color: white;
     max-height: 100vh;
     min-width: 1270px;
     min-height: 520px;
+    gap: 10px;
 }
 
 .Welcome {
@@ -120,11 +119,157 @@ button:focus {
     background-image: linear-gradient(120deg, #155799, #159957);
 }
 
+/* *SessionControls* */
+
+.SessionControls {
+    margin: 10px;
+}
+
+.SessionControls button {
+    float: right;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: bolder;
+    border-radius: 5px;
+    border: 2px solid #666;
+    min-width: 80px;
+    margin-top: 5px;
+    color: #e54235;
+}
+
+.SessionControls button:hover {
+    border: 2px solid #e54235;
+}
+
 /* *Config Styles* */
 
-.Config {
+.ConfigWrapper {
+    display: grid;
+    grid-template-rows: min-content min-content min-content min-content;
+    align-content: center;
     background-color: #fff;
-    margin: 10px;
+    background-image: linear-gradient(120deg, #155799, #159957);
+    color: white;
+    width: 100vw;
+    height: 100vh;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+.Config {
+    display: grid;
+    grid-template-columns: auto;
+    margin: 10px auto;
+    width: 400px;
+    align-items: center;
+    padding: 20px;
+    background-color: white;
+    color: black;
+    box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.25);
+}
+
+.input-label {
+    margin: 0;
+    font-size: 0.8em;
+    padding-left: 10px;
+}
+
+.field {
+    margin: 0;
+    margin-bottom: 10px;
+    border-bottom: 2px solid #666;
+}
+
+.field:hover {
+    border-bottom: 2px solid #8ddfff;
+}
+
+.text-input input {
+    padding: 5px 0;
+    width: 98%;
+}
+
+.radio-input {
+    padding: 5px;
+}
+
+.radio-input input {
+    margin-left: 10px;
+}
+
+.value-input {
+    padding: 5px;
+}
+
+.value-input input {
+    width: min-content;
+}
+
+.path-input {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    border: none;
+}
+
+.path-input input {
+    border-bottom: 2px solid #666;
+}
+
+.path-input input:hover {
+    border-bottom: 2px solid #8ddfff;
+}
+
+.openButton {
+    min-width: none !important;
+    border: 2px solid #666;
+    border-radius: 5px;
+    padding: 4px;
+}
+
+.openButton:hover {
+    border: 2px solid #8ddfff;
+}
+
+.path-input button img {
+    width: 1.3em;
+}
+
+input {
+    margin: 0 5px;
+    font-size: 1em;
+    border: none;
+}
+
+.path-input:hover {
+    border: none;
+}
+
+.start-button {
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: bolder;
+    border-radius: 5px;
+    border: 2px solid #666;
+    min-width: 80px;
+    margin-top: 5px;
+}
+
+.start-button:hover {
+    border: 2px solid #67af6e;
+}
+
+.config-err {
+    color: #e54235;
+    display: inline-block;
+}
+
+.config-bottom {
+    display: grid;
+    grid-template-columns: 1fr min-content;
+    align-items: center;
+    width: 100%;
 }
 
 /* *MatchingTask Styles* */
@@ -135,32 +280,21 @@ button:focus {
     grid-template-rows: min-content min-content min-content;
     min-width: 800px;
     max-height: 100vh;
-    gap: 10px;
     margin: 10px;
 }
 
 .taskInstructions {
-    margin-top: 10px;
+    margin: 10px auto;
     grid-column: 1 / span 2;
-    background-color: white;
     font-size: 1.3em;
 }
 
 .taskFigureWrapper {
-    background-color: white;
-    margin: 5px;
+    margin-right: 10px;
 }
 
 .taskFigure {
     margin: 10px auto;
-}
-
-.taskGridWrapper {
-    background-color: #ececec;
-    -moz-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.3);
-    -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.3);
-    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.3);
-    transform: translate(0, 0); /* ? Forces overlay bounds to container. */
 }
 
 .figureLabel {
@@ -171,7 +305,7 @@ button:focus {
 
 .figureImg {
     /* box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3); */
-    border: 2px solid #ccc;
+    border: 2px solid #cdcdcd;
     border-radius: 5%;
 }
 
@@ -182,12 +316,23 @@ button:focus {
     gap: 10px;
 }
 
+.TaskGrid button {
+    background: none;
+}
+
+.taskGridWrapper {
+    background-color: #d4d4d4;
+    -moz-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.3);
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.3);
+    transform: translate(0, 0); /* ? Forces overlay bounds to container. */
+}
+
 .taskInfo {
     grid-column: 1 / span 2;
     text-align: right;
     margin: 10px;
     min-height: 70px;
-    background-color: white;
 }
 
 .score {
@@ -198,6 +343,22 @@ button:focus {
 .score li {
     display: inline-block;
     padding-right: 20px;
+}
+
+.MatchingTask-complete {
+    font-size: 1.3em;
+    margin: 10px auto;
+}
+
+.done-button {
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: bolder;
+    border-radius: 5px;
+    border: 2px solid #666;
+    min-width: 80px;
+    margin-top: 5px;
 }
 
 /* *GridTile Styles* */
@@ -277,10 +438,11 @@ button:focus {
 
 .AlarmTask {
     display: grid;
-    grid-template-rows: auto 40%;
-    overflow-y: hidden;
+    grid-template-rows: auto min-content;
+    overflow: hidden;
     max-height: 100vh;
-    margin: 10px;
+    padding: 10px;
+    gap: 20px;
 }
 
 /* *Alarm Table* */
@@ -290,6 +452,8 @@ button:focus {
     grid-template-rows: min-content auto;
     overflow-y: auto;
     height: 100%;
+    background-color: white;
+    border: 2px solid #ccc;
 }
 
 .AlarmHeader {
@@ -345,8 +509,10 @@ button:focus {
 .AlarmDetails {
     display: block;
     margin: 10px auto;
-    padding: 10px 0;
+    padding: 10px;
     width: 100%;
+    border: 2px solid #ccc;
+    transform: translate(0, 0); /* ? Forces overlay bounds to container. */
 }
 
 .detailsBar {
@@ -406,4 +572,95 @@ button:focus {
     margin-left: 10px;
     padding: 8px;
     font-weight: bold;
+}
+
+/* *AlarmAlert* */
+
+.alertBox {
+    min-height: 100px;
+    margin: 0;
+    justify-content: right;
+}
+
+.AlarmAlert {
+    appearance: none;
+    background-color: rgba(0, 0, 0, 0.8);
+    border: none;
+    border-radius: 15px;
+    color: white;
+    cursor: pointer;
+    display: block;
+    float: right;
+    font: unset;
+    margin: 0;
+    padding: 0;
+    width: fit-content;
+    animation-duration: 10s;
+    animation-name: slide-in;
+    transform: translateX(150%);
+}
+
+.alertWrapper {
+    display: grid;
+    grid-template-columns: min-content auto;
+    padding: 15px 30px 5px 30px;
+    gap: 15px;
+}
+
+.timeBar {
+    display: block;
+    margin: 0;
+    height: 8px;
+    margin-top: 5px;
+    background-color: rgba(255, 255, 255, 0.5);
+    animation-duration: 11s;
+    animation-name: timebar;
+    width: 0%;
+}
+
+@keyframes slide-in {
+    from {
+        transform: translateX(150%);
+    }
+    10% {
+        transform: translateX(0%);
+    }
+    90% {
+        transform: translateX(0%);
+    }
+    100% {
+        transform: translateX(150%);
+    }
+}
+
+@keyframes stay-in {
+    from {
+        transform: translateX(0%);
+    }
+    to {
+        transform: translateX(0%);
+    }
+}
+
+@keyframes timebar {
+    from {
+        width: 100%;
+    }
+    to {
+        width: 1%;
+    }
+}
+
+.AlarmAlert img {
+    width: 3em;
+}
+
+.AlarmAlert h3 {
+    text-decoration: underline;
+}
+
+/* *Timer* */
+
+.timerTime {
+    font-size: 3em;
 }

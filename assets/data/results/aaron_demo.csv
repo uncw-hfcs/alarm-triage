@@ -1,0 +1,2 @@
+timestamp, userId, group, eventLocation, eventId, eventType
+2021-04-22T20:14:21.241Z, aaron, demo, Application, 0, session end

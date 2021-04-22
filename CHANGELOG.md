@@ -47,3 +47,17 @@
 -   **Refactored Python scripts that generate app data.**
 -   **Various bug fixes and improvements.**
 -   **Various CSS tweaks and improvements.**
+
+# 0.2.0 (2021.04.2) Demo Ready
+
+#### Features
+
+-   **App functionality ready for beta testing.**
+-   **Implemented Alarm notification system.**
+-   **Implemented App configuration system.**
+
+#### Improvements
+
+-   **App Events are saved via specified config & path**
+-   **Various bug fixes and improvements.**
+-   **Various CSS tweaks and improvements.**

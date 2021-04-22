@@ -1,6 +1,14 @@
+import { PathLike } from 'fs';
 import Timestamp from './Timestamp';
 
 type Action = 'Escalate' | 'Ignore' | 'None';
+
+type ConfigProps = {
+    userId: string;
+    group: string;
+    interval: number;
+    dataPath: PathLike;
+};
 
 type TileProps = {
     id: number;
@@ -61,4 +69,13 @@ type Alarms = {
     alarms: Alarm[];
 };
 
-export { Action, Alarm, Alarms, AlarmSort, TileProps, Trial, Trials };
+export {
+    Action,
+    Alarm,
+    Alarms,
+    AlarmSort,
+    ConfigProps,
+    TileProps,
+    Trial,
+    Trials,
+};
