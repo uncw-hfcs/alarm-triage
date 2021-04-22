@@ -1,5 +1,0 @@
-timestamp, userId, group, eventLocation, eventId, eventType
-2021-04-22T17:48:10.715Z, User ID, demo, Application, 0, session start
-2021-04-22T17:48:16.397Z, User ID, demo, Matching Task, 1, incorrect click
-2021-04-22T17:51:02.261Z, User ID, demo, Application, 0, session end
-2021-04-22T19:13:56.201Z, User ID, demo, Application, 0, session start

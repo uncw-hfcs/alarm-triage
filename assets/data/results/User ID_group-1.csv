@@ -1,3 +1,0 @@
-timestamp, userId, group, eventLocation, eventId, eventType
-2021-04-22T19:20:06.569Z, User ID, group-1, Application, 0, session start
-2021-04-22T19:58:11.885Z, User ID, group-1, Application, 0, session end
