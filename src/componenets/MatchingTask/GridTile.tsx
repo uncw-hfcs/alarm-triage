@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import styles from './MatchingTask.module.css';
 
 type Props = {
     trialIndex: number;
@@ -33,21 +34,12 @@ export default class GridTile extends Component<Props, State> {
         this.handleClick = this.handleClick.bind(this);
     }
 
-    componentDidMount() {}
-
-    componentWillUnmount() {}
-
     handleClick(e: React.SyntheticEvent) {
         e.preventDefault();
         const { taskId, onSelect } = this.props;
         this.setState(() => ({
             matched: onSelect(taskId),
         }));
-    }
-
-    // eslint-disable-next-line class-methods-use-this
-    preventDragHandler(e: React.SyntheticEvent) {
-        e.preventDefault();
     }
 
     render() {
@@ -60,27 +52,29 @@ export default class GridTile extends Component<Props, State> {
 
         if (matched) {
             return (
-                <button type="button" className="tile">
+                <button type="button" className={styles.tile}>
                     <img
-                        className="matchedTileImg"
+                        className={styles.matchedTileImg}
                         src={taskImg}
                         alt={`${taskId}`}
                     />
                 </button>
             );
         }
+
         return (
-            // eslint-disable-next-line jsx-a11y/no-static-element-interactions
             <button
                 type="button"
-                className="tile"
+                className={styles.tile}
                 onMouseDown={this.handleClick}
             >
                 <img
-                    className="unmatchedTileImg"
+                    className={styles.unmatchedTileImg}
                     src={taskImg}
                     alt={`${taskId}`}
-                    onDragStart={this.preventDragHandler}
+                    onDragStart={(e) => {
+                        e.preventDefault();
+                    }}
                 />
             </button>
         );

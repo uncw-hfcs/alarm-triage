@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { remote } from 'electron';
+import styles from './Config.module.css';
 import { getUserHome } from '../../handlers/EventHandler';
-import folderIcon from '../../../assets/img/icons/folder-open.svg';
 import { accessToPath, isFileorDir } from '../../utils/Utils';
+import IconBtn from '../IconBtn/IconBtn';
 
 type Props = {
     onSubmit: CallableFunction;
@@ -20,7 +21,7 @@ export default class Config extends Component<Props, State> {
     constructor(props: Props) {
         super(props);
         this.state = {
-            userId: 'User ID',
+            userId: '',
             group: 'demo',
             interval: 30,
             errMessage: '',
@@ -31,10 +32,6 @@ export default class Config extends Component<Props, State> {
         this.handleDataPath = this.handleDataPath.bind(this);
         this.handleChange = this.handleChange.bind(this);
     }
-
-    componentDidMount() {}
-
-    componentWillUnmount() {}
 
     handleChange(e: React.FormEvent<HTMLInputElement>) {
         const { value, name } = e.currentTarget;
@@ -103,27 +100,35 @@ export default class Config extends Component<Props, State> {
         e.preventDefault();
         const { onSubmit } = this.props;
         const { userId, group, interval, errMessage, dataPath } = this.state;
+        const showTimer = group === 'demo';
+
+        if (userId.length === 0) {
+            this.setState({ errMessage: 'User ID cannot be blank.' });
+
+            return;
+        }
 
         if (errMessage.length === 0)
-            onSubmit({ userId, group, interval, dataPath });
+            onSubmit({ userId, group, interval, dataPath, showTimer });
     }
 
     render() {
         const { userId, group, interval, errMessage, dataPath } = this.state;
         return (
-            <form className="Config" onSubmit={this.handleSubmit}>
+            <form className={styles.Config} onSubmit={this.handleSubmit}>
                 <h3>Configure Session</h3>
-                <div className="input-label">User ID</div>
-                <div className="text-input field">
+                <div className={styles.inputLabel}>User ID</div>
+                <div className={(styles.textInput, styles.field)}>
                     <input
                         type="text"
                         name="userId"
-                        placeholder={userId}
+                        placeholder="User ID"
                         onChange={this.handleChange}
+                        value={userId}
                     />
                 </div>
-                <div className="input-label">Session</div>
-                <div className="radio-input field">
+                <div className={styles.inputLabel}>Session</div>
+                <div className={(styles.radioInput, styles.field)}>
                     <input
                         type="radio"
                         name="group"
@@ -149,8 +154,8 @@ export default class Config extends Component<Props, State> {
                     />
                     Group 2
                 </div>
-                <div className="input-label">Alarm Interval</div>
-                <div className="value-input field">
+                <div className={styles.inputLabel}>Alarm Interval</div>
+                <div className={(styles.valueInput, styles.field)}>
                     <input
                         name="interval"
                         type="number"
@@ -163,15 +168,9 @@ export default class Config extends Component<Props, State> {
                     />
                     seconds
                 </div>
-                <div className="input-label">Results Folder</div>
-                <div className="path-input field">
-                    <button
-                        className="openButton"
-                        type="button"
-                        onClick={() => this.handleDataPath()}
-                    >
-                        <img src={folderIcon} alt="Open" />
-                    </button>
+                <div className={styles.inputLabel}>Results Folder</div>
+                <div className={(styles.pathInput, styles.field)}>
+                    <IconBtn onClick={this.handleDataPath} />
                     <input
                         name="path"
                         type="string"
@@ -180,9 +179,9 @@ export default class Config extends Component<Props, State> {
                         value={dataPath}
                     />
                 </div>
-                <div className="config-bottom">
-                    <div className="config-err">{errMessage}</div>
-                    <button className="start-button" type="submit">
+                <div className={styles.configBottom}>
+                    <div className={styles.configErr}>{errMessage}</div>
+                    <button className={styles.startButton} type="submit">
                         Start
                     </button>
                 </div>

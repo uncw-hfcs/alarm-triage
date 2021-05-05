@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { AlarmSort } from '../../../utils/PropTypes';
-// TODO: Lift descending to parent component.
+import { AlarmSort } from '../../utils/PropTypes';
+import styles from './AlarmTable.module.css';
 
 type Props = {
     text: string;
@@ -23,10 +23,6 @@ export default class AlarmHeaderCol extends Component<Props, State> {
         this.handleClick = this.handleClick.bind(this);
     }
 
-    componentDidMount() {}
-
-    componentWillUnmount() {}
-
     handleClick(e: React.SyntheticEvent) {
         e.preventDefault();
         const { handleSelect, type } = this.props;
@@ -37,16 +33,19 @@ export default class AlarmHeaderCol extends Component<Props, State> {
     render() {
         const { text, width } = this.props;
         const { selected, descending } = this.props;
-        let className = 'AlarmHeaderCol';
         let bodyStr = text;
+
         if (selected) {
-            className += ' selectedHead';
             bodyStr += descending ? '▾' : '▴';
         }
 
         return (
             <th
-                className={className}
+                className={
+                    selected
+                        ? (styles.AlarmHeaderCol, styles.selectedHead)
+                        : styles.AlarmHeaderCol
+                }
                 onMouseDown={this.handleClick}
                 style={{ minWidth: `${width}px` }}
             >

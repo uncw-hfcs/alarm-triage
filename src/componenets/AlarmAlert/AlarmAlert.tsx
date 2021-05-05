@@ -3,6 +3,7 @@ import iconImg from '../../../assets/img/icons/alert.png';
 import iconAlt from '../../../assets/img/icons/alert_alt.png';
 import sound from '../../sounds/alarm.mp3';
 import { Alarm } from '../../utils/PropTypes';
+import styles from './AlarmAlert.module.css';
 
 type Props = {
     alarm: Alarm;
@@ -44,20 +45,20 @@ export default class AlarmAlert extends Component<Props, State> {
         return (
             <button
                 type="button"
-                className="AlarmAlert"
+                className={styles.AlarmAlert}
                 onClick={() => {
                     if (onAlarmClick) onAlarmClick(alarm);
                 }}
             >
-                <div className="alertWrapper">
+                <div className={styles.alertWrapper}>
                     <img src={icon} alt="alarm icon" />
-                    <div className="alertInfo">
+                    <div className={styles.alertInfo}>
                         <h3>New Impossible Travel Alarm</h3>
                         {alarm?.data['1'].authCity} →{' '}
                         {alarm?.data['2'].authCity} in {alarm?.authTime} hrs.
                     </div>
                 </div>
-                <span className="timeBar" />
+                <span className={styles.timeBar} />
             </button>
         );
     }

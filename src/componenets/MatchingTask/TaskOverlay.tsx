@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import styles from './MatchingTask.module.css';
 
 type Props = {
     symbol: string;
@@ -14,9 +15,6 @@ type State = {
 };
 
 export default class TaskOverlay extends Component<Props, State> {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    timer: any;
-
     static getDerivedStateFromProps(props: Props) {
         return { visible: props.show };
     }
@@ -27,10 +25,6 @@ export default class TaskOverlay extends Component<Props, State> {
             visible: props.show,
         };
     }
-
-    componentDidMount() {}
-
-    componentWillUnmount() {}
 
     render() {
         const { symbol, message, onShow, timeout, onTimeout } = this.props;
@@ -46,11 +40,11 @@ export default class TaskOverlay extends Component<Props, State> {
         }, timeout);
 
         return (
-            <div className="TaskOverlay">
-                <div className="overlayWrapper">
-                    <div className="overlayBox">
-                        <div className="overlaySymbol">{symbol}</div>
-                        <div className="overlayMessage">{message}</div>
+            <div className={styles.TaskOverlay}>
+                <div className={styles.overlayWrapper}>
+                    <div className={styles.overlayBox}>
+                        <div className={styles.overlaySymbol}>{symbol}</div>
+                        <div className={styles.overlayMessage}>{message}</div>
                     </div>
                 </div>
             </div>

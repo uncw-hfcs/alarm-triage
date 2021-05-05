@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
-import AlarmDetails from './AlarmDetails';
+import AlarmDetails from '../AlarmDetails/AlarmDetails';
 import { Alarm, Alarms, Action, ConfigProps } from '../../utils/PropTypes';
-import AlarmTable from './AlarmTable/AlarmTable';
-import AlarmAlert from './AlarmAlert';
+import AlarmTable from '../AlarmTable/AlarmTable';
+import AlarmAlert from '../AlarmAlert/AlarmAlert';
 import Timestamp from '../../utils/Timestamp';
-import Timer from '../Timer';
+import Timer from '../Timer/Timer';
 import AppEvent from '../../events/AppEvent';
 import HandleAppEvent from '../../handlers/EventHandler';
+import styles from './AlarmTask.module.css';
 
 type Props = {
     alarmData: Alarms;
     configProps: ConfigProps;
+    onTimer: CallableFunction;
 };
 
 type State = {
@@ -21,6 +23,8 @@ type State = {
 };
 
 export default class AlarmTask extends Component<Props, State> {
+    timer!: React.ReactNode;
+
     constructor(props: Props) {
         super(props);
 
@@ -31,9 +35,18 @@ export default class AlarmTask extends Component<Props, State> {
         this.pushAlarm = this.pushAlarm.bind(this);
     }
 
-    componentDidMount() {}
+    componentDidMount() {
+        const { configProps, onTimer } = this.props;
+        this.timer = (
+            <Timer
+                interval={configProps.interval}
+                onInterval={this.pushAlarm}
+                hidden={!configProps.showTimer}
+            />
+        );
 
-    componentWillUnmount() {}
+        onTimer(this.timer);
+    }
 
     handleAlertClick(alarm: Alarm) {
         const { configProps } = this.props;
@@ -102,36 +115,26 @@ export default class AlarmTask extends Component<Props, State> {
         const { configProps } = this.props;
 
         return (
-            <div className="AlarmTask">
+            <div className={styles.AlarmTask}>
                 <AlarmTable
                     alarms={alarms}
                     configProps={configProps}
                     handleSelect={this.handleSelect}
                     selectedAlarm={selectedAlarm}
                 />
-                {selectedAlarm ? (
-                    <AlarmDetails
-                        alarm={selectedAlarm}
-                        action={
-                            selectedAlarm.action ? selectedAlarm.action : 'None'
-                        }
-                        configProps={configProps}
-                        onActionUpdate={this.handleUpdate}
-                    />
-                ) : (
+                <AlarmDetails
+                    alarm={selectedAlarm}
+                    configProps={configProps}
+                    onActionUpdate={this.handleUpdate}
+                />
+                <div className={styles.alertBox}>
                     <div />
-                )}
-                <div className="alertBox">
                     {alert ? (
                         <AlarmAlert
                             alarm={alarms[alarms.length - 1]}
                             onAlarmClick={this.handleAlertClick}
                         />
                     ) : null}
-                    <Timer
-                        interval={configProps.interval}
-                        onInterval={this.pushAlarm}
-                    />
                 </div>
             </div>
         );

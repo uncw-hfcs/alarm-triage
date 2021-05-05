@@ -30,8 +30,8 @@
     ]
   },
   "build": {
-    "productName": "ElectronReact",
-    "appId": "org.erb.ElectronReact",
+    "productName": "AlarmTriage",
+    "appId": "edu.uncw.hfcs.AlarmTriage",
     "files": [
       "dist/",
       "node_modules/",

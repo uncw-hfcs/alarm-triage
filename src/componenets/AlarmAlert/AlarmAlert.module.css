@@ -1,0 +1,78 @@
+/* *AlarmAlert* */
+
+.AlarmAlert {
+    appearance: none;
+    background-color: rgba(0, 0, 0, 0.8);
+    border: none;
+    border-radius: 15px;
+    color: white;
+    cursor: pointer;
+    display: block;
+    float: right;
+    font: unset;
+    margin: 0;
+    padding: 0;
+    width: fit-content;
+    animation-duration: 10s;
+    animation-name: slide-in;
+    transform: translateX(150%);
+}
+
+.AlarmAlert img {
+    width: 3em;
+}
+
+.AlarmAlert h3 {
+    text-decoration: underline;
+}
+
+.alertWrapper {
+    display: grid;
+    grid-template-columns: min-content auto;
+    padding: 15px 30px 5px 30px;
+    gap: 15px;
+}
+
+.timeBar {
+    display: block;
+    margin: 0;
+    height: 8px;
+    margin-top: 5px;
+    background-color: rgba(255, 255, 255, 0.5);
+    animation-duration: 11s;
+    animation-name: timebar;
+    width: 0%;
+}
+
+@keyframes slide-in {
+    from {
+        transform: translateX(150%);
+    }
+    10% {
+        transform: translateX(0%);
+    }
+    90% {
+        transform: translateX(0%);
+    }
+    100% {
+        transform: translateX(150%);
+    }
+}
+
+@keyframes stay-in {
+    from {
+        transform: translateX(0%);
+    }
+    to {
+        transform: translateX(0%);
+    }
+}
+
+@keyframes timebar {
+    from {
+        width: 100%;
+    }
+    to {
+        width: 1%;
+    }
+}

@@ -1,0 +1,68 @@
+/* *Alarm Table* */
+
+.AlarmTable {
+    display: grid;
+    grid-template-rows: min-content auto;
+    overflow-y: auto;
+    height: 100%;
+    background-color: #ececec;
+    border-bottom: 2px solid #ccc;
+}
+
+.AlarmHeader {
+    width: 100%;
+    background-color: #ececec;
+}
+
+.AlarmHeaderCol {
+    cursor: pointer;
+    border-bottom: 2px solid #ccc;
+    height: 42px;
+}
+
+.AlarmHeaderCol:hover {
+    background-color: #d5f2ff;
+}
+
+.alarmTableBody {
+    background-color: #fff;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    width: 100%;
+    height: 100%;
+    white-space: nowrap;
+    border-collapse: collapse;
+}
+
+.alarmTableBody tr {
+    cursor: pointer;
+}
+
+.alarmTableBody tr:nth-child(odd):not(.selectedRow) {
+    border-right: 2px solid #fff;
+}
+
+.alarmTableBody tr:nth-child(even):not(.selectedHead) {
+    background-color: #ececec;
+    border-right: 2px solid #ececec;
+}
+
+.alarmTableBody tr:hover:not(.selectedRow) {
+    background-color: #d5f2ff !important;
+    border-color: #d5f2ff;
+}
+
+.alarmTableBody td:last-child {
+    font-weight: bold;
+}
+
+.selectedHead {
+    border-bottom: 2px inset #8ddfff;
+    cursor: pointer;
+}
+
+.selectedRow {
+    background-color: #ccc !important;
+    font-weight: bold;
+    border-right: 2px solid #ccc;
+}

@@ -7,6 +7,7 @@ import incorrectSound from '../../sounds/incorrect.mp3';
 import { ConfigProps, Trial } from '../../utils/PropTypes';
 import AppEvent from '../../events/AppEvent';
 import HandleAppEvent from '../../handlers/EventHandler';
+import styles from './MatchingTask.module.css';
 
 type Props = {
     trials: Trial[];
@@ -23,6 +24,11 @@ type State = {
     correctStreak: number;
     lastEvent?: string;
 };
+
+// ? This is just to clear a console error:
+function keyBypass(i: number): number {
+    return i;
+}
 
 class MatchingTask extends Component<Props, State> {
     constructor(props: Props) {
@@ -137,7 +143,7 @@ class MatchingTask extends Component<Props, State> {
 
         if (currentIndex >= trials.length) {
             return (
-                <div className="MatchingTask-complete">
+                <div className={styles.MatchingTaskComplete}>
                     Task complete. When finished, click the button below to
                     return to the configuration screen.
                 </div>
@@ -145,30 +151,30 @@ class MatchingTask extends Component<Props, State> {
         }
 
         return (
-            <div className="MatchingTask" data-tid="MatchingTask">
-                <div className="taskInstructions">
+            <div className={styles.MatchingTask} data-tid="MatchingTask">
+                <div className={styles.taskInstructions}>
                     Click a symbol that matches Symbol 1. Then click a symbol
                     that matches Symbol 2. Alternate until you find them all.
                 </div>
-                <div className="taskFigureWrapper">
-                    <div className="taskFigure">
-                        <h3 className="figureLabel">Symbol 1</h3>
+                <div className={styles.taskFigureWrapper}>
+                    <div className={styles.taskFigure}>
+                        <h3 className={styles.figureLabel}>Symbol 1</h3>
                         <img
-                            className="figureImg"
+                            className={styles.figureImg}
                             src={trial.matchData['1'].path}
                             alt="Symbol 1"
                         />
                     </div>
-                    <div className="taskFigure">
-                        <h3 className="figureLabel">Symbol 2</h3>
+                    <div className={styles.taskFigure}>
+                        <h3 className={styles.figureLabel}>Symbol 2</h3>
                         <img
-                            className="figureImg"
+                            className={styles.figureImg}
                             src={trial.matchData['2'].path}
                             alt="Symbol 2"
                         />
                     </div>
                 </div>
-                <div className="taskGridWrapper">
+                <div className={styles.taskGridWrapper}>
                     <TaskOverlay
                         symbol="✔"
                         message={`Trial ${currentIndex + 1} Complete`}
@@ -177,15 +183,16 @@ class MatchingTask extends Component<Props, State> {
                         timeout={2000}
                         onTimeout={this.nextTrial}
                     />
-                    <div className="TaskGrid">
+                    <div className={styles.TaskGrid}>
                         {trial.tileData.map(
-                            (data: { id: number; path: string }) => {
+                            (data: { id: number; path: string }, i: number) => {
                                 return (
                                     <GridTile
                                         trialIndex={currentIndex}
                                         taskId={data.id}
                                         taskImg={data.path}
                                         onSelect={this.handleSelect}
+                                        key={keyBypass(i)}
                                     />
                                 );
                             }
@@ -193,8 +200,8 @@ class MatchingTask extends Component<Props, State> {
                     </div>
                 </div>
 
-                <div className="taskInfo">
-                    <span className="score">
+                <div className={styles.taskInfo}>
+                    <span className={styles.score}>
                         <li>Trial Number: {currentIndex + 1}</li>
                         <li>Matches Left: {matchesLeft}</li>
                     </span>

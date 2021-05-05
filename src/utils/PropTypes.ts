@@ -8,6 +8,7 @@ type ConfigProps = {
     group: string;
     interval: number;
     dataPath: PathLike;
+    showTimer: boolean;
 };
 
 type TileProps = {

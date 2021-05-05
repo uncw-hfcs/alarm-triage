@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import { ipcRenderer } from 'electron';
 import { Alarms, ConfigProps, Trials } from '../utils/PropTypes';
+import styles from './MainSession.module.css';
 import MatchingTask from '../componenets/MatchingTask/MatchingTask';
 import AlarmTask from '../componenets/AlarmTask/AlarmTask';
 import Config from '../componenets/Config/Config';
 import { getAlarmData, getTrialData } from '../utils/Utils';
-import SessionControls from '../componenets/SessionControls';
 import HandleAppEvent from '../handlers/EventHandler';
 import AppEvent from '../events/AppEvent';
+import ControlBar from '../componenets/Control/ControlBar';
+import Timer from '../componenets/Timer/Timer';
 
 type Props = {
     test?: boolean;
@@ -17,6 +19,7 @@ type State = {
     alarmData?: Alarms;
     trialData?: Trials;
     configProps?: ConfigProps;
+    timer?: Timer;
 };
 
 export default class MainSession extends Component<Props, State> {
@@ -27,10 +30,12 @@ export default class MainSession extends Component<Props, State> {
             alarmData: undefined,
             trialData: undefined,
             configProps: undefined,
+            timer: undefined,
         };
 
         this.handleConfig = this.handleConfig.bind(this);
         this.handleDone = this.handleDone.bind(this);
+        this.handleTimer = this.handleTimer.bind(this);
     }
 
     handleConfig(configProps: ConfigProps) {
@@ -74,8 +79,12 @@ export default class MainSession extends Component<Props, State> {
         });
     }
 
+    handleTimer(timer: Timer) {
+        this.setState({ timer });
+    }
+
     render() {
-        const { alarmData, configProps, trialData } = this.state;
+        const { alarmData, configProps, trialData, timer } = this.state;
 
         if (
             alarmData !== undefined &&
@@ -83,7 +92,7 @@ export default class MainSession extends Component<Props, State> {
             configProps !== undefined
         ) {
             return (
-                <div className="MainSession">
+                <div className={styles.MainSession}>
                     <MatchingTask
                         configProps={configProps}
                         trials={trialData.trials}
@@ -92,20 +101,23 @@ export default class MainSession extends Component<Props, State> {
                     <AlarmTask
                         alarmData={alarmData}
                         configProps={configProps}
+                        onTimer={this.handleTimer}
                     />
-                    <SessionControls onSessionEnd={this.handleDone} />
+                    <ControlBar
+                        config={configProps}
+                        onSessionEnd={this.handleDone}
+                        timer={timer}
+                    />
                 </div>
             );
         }
 
         return (
-            <div className="ConfigWrapper">
+            <div className={styles.configWrapper}>
                 <h1>Alarm Triage</h1>
                 <h3>IDS Task Simulator</h3>
                 <Config onSubmit={this.handleConfig} />
-                <div className="config-footer">
-                    UNCW Human Factors in Computing Systems Lab
-                </div>
+                <div>UNCW Human Factors in Computing Systems Lab</div>
             </div>
         );
     }

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { AlarmSort } from '../../../utils/PropTypes';
+import { AlarmSort } from '../../utils/PropTypes';
 import AlarmHeaderCol from './AlarmHeaderCol';
+import styles from './AlarmTable.module.css';
 
 type Props = {
     handleSort: CallableFunction;
@@ -20,10 +21,6 @@ export default class AlarmHeader extends Component<Props, State> {
         };
         this.handleSelect = this.handleSelect.bind(this);
     }
-
-    componentDidMount() {}
-
-    componentWillUnmount() {}
 
     handleSelect(sortBy: AlarmSort) {
         const { handleSort } = this.props;
@@ -50,7 +47,7 @@ export default class AlarmHeader extends Component<Props, State> {
         const { colWidths } = this.props;
         const { sortType, descending } = this.state;
         return (
-            <tr className="AlarmHeader">
+            <tr className={styles.AlarmHeader}>
                 <AlarmHeaderCol
                     text="Event Time"
                     type="event"

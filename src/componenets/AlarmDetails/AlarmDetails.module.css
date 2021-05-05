@@ -1,0 +1,53 @@
+.AlarmDetails {
+    background-color: #fff;
+    border-bottom: 2px solid #ccc;
+    display: block;
+    transform: translate(0, 0); /* ? Forces overlay bounds to container. */
+    width: 100%;
+}
+
+.detailsBar {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    width: 100%;
+    background-color: #ececec;
+    border-bottom: 2px solid #ccc;
+    padding: 10px;
+}
+
+.detailsBar h2 {
+    font-size: 1.3em;
+    align-self: center;
+}
+
+.actionWrapper {
+    display: flex;
+    justify-items: right;
+    margin-right: 5px;
+}
+
+.detailsTable {
+    display: block;
+    border-collapse: separate;
+    width: auto;
+}
+
+.detailsTable tr {
+    border-bottom: 2px solid #aaa;
+}
+
+.detailsTable th {
+    width: auto;
+}
+
+.detailsTable td {
+    text-align: center;
+}
+
+/* *AlarmAction* */
+
+.actionSelect {
+    margin-left: 10px;
+    padding: 2px 4px;
+    font-weight: bold;
+}

@@ -1,28 +1,44 @@
 import React, { Component } from 'react';
-import { Alarm } from '../../../utils/PropTypes';
+import { Action, Alarm } from '../../utils/PropTypes';
+import styles from './AlarmTable.module.css';
 
 type Props = {
     alarm: Alarm;
     selected?: boolean;
     onSelect: CallableFunction;
     colWidths: number[];
-};
-
-const escalateStyle = {
-    borderLeft: '2px solid #61aa6b',
-};
-
-const ignoreStyle = {
-    borderLeft: '2px solid #f05c48',
-};
-
-const noneStyle = {
-    borderLeft: '2px solid rgba(0, 0, 0, 0.0)',
+    showConfidence: boolean;
 };
 
 type State = {
     selected: boolean;
 };
+
+type Style = {
+    borderRight?: string;
+    backgroundColor?: string;
+};
+
+function buildStyle(action: Action | undefined, confidence: string) {
+    const style: Style = {};
+
+    if (action !== 'None') {
+        style.borderRight =
+            action === 'Escalate' ? '2px solid #61aa6b' : '2px solid #f05c48';
+    }
+
+    if (confidence !== 'unknown') {
+        if (confidence === 'high') {
+            style.backgroundColor = '#f5c6cb';
+        } else if (confidence === 'medium') {
+            style.backgroundColor = '#ffeeba';
+        } else {
+            style.backgroundColor = '#c3e6cb';
+        }
+    }
+
+    return style;
+}
 
 export default class AlarmRow extends Component<Props, State> {
     static getDerivedStateFromProps(nextProps: Props) {
@@ -37,10 +53,6 @@ export default class AlarmRow extends Component<Props, State> {
         this.handleClick = this.handleClick.bind(this);
     }
 
-    componentDidMount() {}
-
-    componentWillUnmount() {}
-
     handleClick(e: React.SyntheticEvent) {
         e.preventDefault();
         const { alarm, onSelect } = this.props;
@@ -50,15 +62,10 @@ export default class AlarmRow extends Component<Props, State> {
     render() {
         const { alarm, colWidths } = this.props;
         const { selected } = this.state;
-        let style = noneStyle;
-        if (alarm.action === 'Escalate') {
-            style = escalateStyle;
-        } else if (alarm.action === 'Ignore') {
-            style = ignoreStyle;
-        }
+        const style = buildStyle(alarm.action, alarm.confidence);
         return (
             <tr
-                className={selected ? 'selectedRow' : undefined}
+                className={selected ? styles.selectedRow : undefined}
                 onMouseDown={this.handleClick}
                 style={style}
             >

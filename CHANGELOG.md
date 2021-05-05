@@ -48,16 +48,30 @@
 -   **Various bug fixes and improvements.**
 -   **Various CSS tweaks and improvements.**
 
-# 0.2.0 (2021.04.2) Demo Ready
+# 0.2.0 (2021.04.22) Demo Ready
 
 #### Features
 
--   **App functionality ready for beta testing.**
+-   **App functionality ready for demonstration.**
 -   **Implemented Alarm notification system.**
 -   **Implemented App configuration system.**
 
 #### Improvements
 
 -   **App Events are saved via specified config & path**
+-   **Various bug fixes and improvements.**
+-   **Various CSS tweaks and improvements.**
+
+# 1.0.0 (2021.05.05) Beta Release
+
+#### Features
+
+-   **App functionality ready for beta testing.**
+-   **Implemented alarm confidence functionality.**
+-   **Implemented ControlBar**
+-   **Refactored CSS into seperate files for each component.**
+
+#### Improvements
+
 -   **Various bug fixes and improvements.**
 -   **Various CSS tweaks and improvements.**

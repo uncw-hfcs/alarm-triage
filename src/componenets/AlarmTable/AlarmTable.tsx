@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { Alarm, AlarmSort, ConfigProps } from '../../../utils/PropTypes';
+import { Alarm, AlarmSort, ConfigProps } from '../../utils/PropTypes';
 import AlarmHeader from './AlarmHeader';
 import AlarmRow from './AlarmRow';
-import AppEvent from '../../../events/AppEvent';
-import HandleAppEvent from '../../../handlers/EventHandler';
+import AppEvent from '../../events/AppEvent';
+import HandleAppEvent from '../../handlers/EventHandler';
+import styles from './AlarmTable.module.css';
 
 type Props = {
     alarms: Alarm[];
@@ -13,25 +14,23 @@ type Props = {
 };
 
 type State = {
-    alarms: Alarm[];
     colWidths: number[];
+    sortBy: AlarmSort;
+    descending: boolean;
 };
 
 export default class AlarmTable extends Component<Props, State> {
     constructor(props: Props) {
         super(props);
-        const { alarms } = this.props;
+
         this.state = {
-            alarms,
             colWidths: [120, 50, 119, 119, 72, 95],
+            sortBy: undefined,
+            descending: false,
         };
         this.handleSort = this.handleSort.bind(this);
         this.handleRowSelect = this.handleRowSelect.bind(this);
     }
-
-    componentDidMount() {}
-
-    componentWillUnmount() {}
 
     handleRowSelect(alarm: Alarm) {
         const { configProps, handleSelect } = this.props;
@@ -48,12 +47,12 @@ export default class AlarmTable extends Component<Props, State> {
     }
 
     handleSort(sortBy: AlarmSort, descending: boolean) {
-        this.setState({ alarms: this.sortAlarms(sortBy, descending) });
+        this.setState({ sortBy, descending });
     }
 
-    sortAlarms(sortBy: AlarmSort, descending: boolean): Alarm[] {
-        const { alarms } = this.state;
-        const { props } = this;
+    sortAlarms(): Alarm[] {
+        const { alarms } = this.props;
+        const { sortBy, descending } = this.state;
         const sortedAlarms = Array.from(alarms);
         const sort = (a: string | number, b: string | number, c: boolean) => {
             const t = c ? -1 : 1;
@@ -62,7 +61,7 @@ export default class AlarmTable extends Component<Props, State> {
         };
 
         if (sortBy === undefined) {
-            return props.alarms;
+            return alarms;
         }
 
         return sortedAlarms.sort((a: Alarm, b: Alarm) => {
@@ -103,28 +102,38 @@ export default class AlarmTable extends Component<Props, State> {
     }
 
     render() {
-        const { alarms, colWidths } = this.state;
-        const { selectedAlarm } = this.props;
-        if (alarms.length < 0) return null;
+        const { colWidths } = this.state;
+        const { configProps, selectedAlarm } = this.props;
+        const alarms = this.sortAlarms();
+        if (alarms.length < 0) {
+            return (
+                <div>
+                    <h3>Alarms will be listed here.</h3>
+                </div>
+            );
+        }
 
         return (
-            <table className="AlarmTable">
+            <table className={styles.AlarmTable}>
                 <thead>
                     <AlarmHeader
                         handleSort={this.handleSort}
                         colWidths={colWidths}
                     />
                 </thead>
-                <tbody className="alarmTableBody">
+                <tbody className={styles.alarmTableBody}>
                     {alarms.length > 0
                         ? alarms.map((alarm: Alarm) => {
                               return (
-                                  // eslint-disable-next-line react/jsx-key
                                   <AlarmRow
                                       alarm={alarm}
                                       selected={alarm.id === selectedAlarm?.id}
                                       onSelect={this.handleRowSelect}
                                       colWidths={colWidths}
+                                      showConfidence={
+                                          configProps.group === 'group-2'
+                                      }
+                                      key={alarm.id}
                                   />
                               );
                           })

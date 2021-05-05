@@ -1,0 +1,14 @@
+.Timer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+.timerIcon {
+    width: 1.8em;
+}
+
+.timerTime {
+    padding-left: 10px;
+    font-size: 2em;
+}

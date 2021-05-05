@@ -1,0 +1,11 @@
+.IconBtn {
+    min-width: none !important;
+    padding-left: 6px;
+    cursor: pointer;
+    border: none;
+    background: none;
+}
+
+.IconBtn img {
+    width: 1.5em;
+}

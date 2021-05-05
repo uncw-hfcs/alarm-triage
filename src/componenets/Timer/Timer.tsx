@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+import styles from './Timer.module.css';
+import clockIcon from '../../../assets/img/icons/clock.svg';
 
 type Props = {
     hidden?: boolean;
     interval: number;
-    label?: string;
     onInterval: CallableFunction;
 };
 
@@ -47,7 +48,7 @@ export default class Timer extends Component<Props, State> {
     }
 
     render() {
-        const { label, hidden } = this.props;
+        const { hidden } = this.props;
         const { time } = this.state;
         const minutes = `0${Math.floor(time / 60)}`.slice(-2);
         const seconds = `0${time % 60}`.slice(-2);
@@ -55,9 +56,13 @@ export default class Timer extends Component<Props, State> {
         if (hidden) return <div className="Timer" />;
 
         return (
-            <div className="Timer">
-                <div className="timerLabel">{label}</div>
-                <div className="timerTime">
+            <div className={styles.Timer}>
+                <img
+                    className={styles.timerIcon}
+                    src={clockIcon}
+                    alt="Timer icon"
+                />
+                <div className={styles.timerTime}>
                     {minutes}:{seconds}
                 </div>
             </div>
