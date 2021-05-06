@@ -130,6 +130,12 @@ export default class AlarmDetails extends Component<Props> {
                                 {alarm ? `${alarm.authTime} hrs` : ''}
                             </td>
                         </tr>
+                        <tr>
+                            <th>VPN Confidence</th>
+                            <td colSpan={2}>
+                                {alarm ? `${alarm.vpnConfidence}%` : ''}
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
             </div>

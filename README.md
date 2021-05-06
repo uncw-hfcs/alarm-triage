@@ -11,7 +11,7 @@
 <div align="center">
 
 [![Build Status][github-actions-status]][github-actions-url]
-[![Version](https://img.shields.io/badge/version-1.0.0-blue)](https://github.com/uncw-hfcs/alarm-triage/blob/main/CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-1.0.1-blue)](https://github.com/uncw-hfcs/alarm-triage/blob/main/CHANGELOG.md)
 
 </div>
 

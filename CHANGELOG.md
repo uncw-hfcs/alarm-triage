@@ -75,3 +75,13 @@
 
 -   **Various bug fixes and improvements.**
 -   **Various CSS tweaks and improvements.**
+
+# 1.0.1 (2021.05.05)
+
+#### Features
+
+-   **VPN Confidence added to AlarmDetails Component.**
+
+#### Improvements
+
+-   **Modified default window size slightly.**
